@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<T3DataStructure>
+	<meta>
+		<langDisable>1</langDisable>
+	</meta>
+	<sheets>
+		<common>
+			<ROOT>
+				<type>array</type>
+				<TCEforms>
+					<sheetTitle>LLL:EXT:jwplayer/Resources/Private/Language/locallang_db.xml:flexform.sheets.common</sheetTitle>
+				</TCEforms>
+				<el>
+					<settings.movie>
+						<TCEforms>
+							<label>LLL:EXT:jwplayer/Resources/Private/Language/locallang_db.xml:flexform.settings.movie</label>
+							<config>
+								<type>group</type>
+								<internal_type>file</internal_type>
+								<allowed>mp4,mov,f4v,flv,3gp,3g2,aac,m4a</allowed>
+								<max_size>1000</max_size>
+								<uploadfolder>uploads/tx_jwplayer/</uploadfolder>
+								<size>5</size>
+								<maxitems>1</maxitems>
+								<minitems>1</minitems>
+							</config>
+						</TCEforms>
+					</settings.movie>
+					<settings.width>
+						<TCEforms>
+							<label>LLL:EXT:jwplayer/Resources/Private/Language/locallang_db.xml:flexform.settings.width</label>
+							<config>
+								<type>input</type>
+								<eval>int</eval>
+								<size>3</size>
+								<default>250</default>
+							</config>
+						</TCEforms>
+					</settings.width>
+					<settings.height>
+						<TCEforms>
+							<label>LLL:EXT:jwplayer/Resources/Private/Language/locallang_db.xml:flexform.settings.height</label>
+							<config>
+								<type>input</type>
+								<eval>int</eval>
+								<size>3</size>
+								<default>250</default>
+							</config>
+						</TCEforms>
+					</settings.height>
+				</el>
+			</ROOT>
+		</common>
+		<picture>
+			<ROOT>
+				<type>array</type>
+				<TCEforms>
+					<sheetTitle>LLL:EXT:jwplayer/Resources/Private/Language/locallang_db.xml:flexform.sheets.picture</sheetTitle>
+				</TCEforms>
+				<el>
+					<settings.autostart>
+						<TCEforms>
+							<label>LLL:EXT:jwplayer/Resources/Private/Language/locallang_db.xml:flexform.settings.autostart</label>
+							<config>
+								<type>check</type>
+							</config>
+						</TCEforms>
+					</settings.autostart>
+					<settings.repeat>
+						<TCEforms>
+							<label>LLL:EXT:jwplayer/Resources/Private/Language/locallang_db.xml:flexform.settings.repeat</label>
+							<config>
+								<type>select</type>
+								<maxitems>1</maxitems>
+								<items type="array">
+									<numIndex index="0" type="array">
+										<numIndex index="0">LLL:EXT:jwplayer/Resources/Private/Language/locallang_db.xml:flexform.settings.repeat.none</numIndex>
+										<numIndex index="1">none</numIndex>
+									</numIndex>
+									<numIndex index="1" type="array">
+										<numIndex index="0">LLL:EXT:jwplayer/Resources/Private/Language/locallang_db.xml:flexform.settings.repeat.single</numIndex>
+										<numIndex index="1">single</numIndex>
+									</numIndex>
+									<numIndex index="2" type="array">
+										<numIndex index="0">LLL:EXT:jwplayer/Resources/Private/Language/locallang_db.xml:flexform.settings.repeat.list</numIndex>
+										<numIndex index="1">list</numIndex>
+									</numIndex>
+									<numIndex index="3" type="array">
+										<numIndex index="0">LLL:EXT:jwplayer/Resources/Private/Language/locallang_db.xml:flexform.settings.repeat.always</numIndex>
+										<numIndex index="1">always</numIndex>
+									</numIndex>
+								</items>
+								<default>none</default>
+							</config>
+						</TCEforms>
+					</settings.repeat>
+					<settings.bufferlength>
+						<TCEforms>
+							<label>LLL:EXT:jwplayer/Resources/Private/Language/locallang_db.xml:flexform.settings.bufferlength</label>
+							<config>
+								<type>input</type>
+								<eval>int</eval>
+								<size>3</size>
+							</config>
+						</TCEforms>
+					</settings.bufferlength>
+					<settings.stretching>
+						<TCEforms>
+							<label>LLL:EXT:jwplayer/Resources/Private/Language/locallang_db.xml:flexform.settings.stretching</label>
+							<config>
+								<type>select</type>
+								<items type="array">
+									<numIndex index="0" type="array">
+										<numIndex index="0">LLL:EXT:jwplayer/Resources/Private/Language/locallang_db.xml:flexform.settings.stretching.none</numIndex>
+										<numIndex index="1">none</numIndex>
+									</numIndex>
+									<numIndex index="1" type="array">
+										<numIndex index="0">LLL:EXT:jwplayer/Resources/Private/Language/locallang_db.xml:flexform.settings.stretching.exactfit</numIndex>
+										<numIndex index="1">exactfit</numIndex>
+									</numIndex>
+									<numIndex index="2" type="array">
+										<numIndex index="0">LLL:EXT:jwplayer/Resources/Private/Language/locallang_db.xml:flexform.settings.stretching.uniform</numIndex>
+										<numIndex index="1">uniform</numIndex>
+									</numIndex>
+									<numIndex index="3" type="array">
+										<numIndex index="0">LLL:EXT:jwplayer/Resources/Private/Language/locallang_db.xml:flexform.settings.stretching.fill</numIndex>
+										<numIndex index="1">fill</numIndex>
+									</numIndex>
+								</items>
+								<default>uniform</default>
+							</config>
+						</TCEforms>
+					</settings.stretching>
+				</el>
+			</ROOT>
+		</picture>
+		<sound>
+			<ROOT>
+				<type>array</type>
+				<TCEforms>
+					<sheetTitle>LLL:EXT:jwplayer/Resources/Private/Language/locallang_db.xml:flexform.sheets.sound</sheetTitle>
+				</TCEforms>
+				<el>
+					<settings.volume>
+						<TCEforms>
+							<label>LLL:EXT:jwplayer/Resources/Private/Language/locallang_db.xml:flexform.settings.volume</label>
+							<config>
+								<type>input</type>
+								<eval>int</eval>
+								<size>2</size>
+								<default>90</default>
+							</config>
+						</TCEforms>
+					</settings.volume>
+					<settings.mute>
+						<TCEforms>
+							<label>LLL:EXT:jwplayer/Resources/Private/Language/locallang_db.xml:flexform.settings.mute</label>
+							<config>
+								<type>check</type>
+							</config>
+						</TCEforms>
+					</settings.mute>
+				</el>
+			</ROOT>
+		</sound>
+		<plugins>
+			<ROOT>
+				<type>array</type>
+				<TCEforms>
+					<sheetTitle>LLL:EXT:jwplayer/Resources/Private/Language/locallang_db.xml:flexform.sheets.plugins</sheetTitle>
+				</TCEforms>
+				<el>
+					<settings.facebookPlugin>
+						<TCEforms>
+							<label>LLL:EXT:jwplayer/Resources/Private/Language/locallang_db.xml:flexform.settings.facebookPlugin</label>
+							<config>
+								<type>check</type>
+							</config>
+						</TCEforms>
+					</settings.facebookPlugin>
+				</el>
+			</ROOT>
+		</plugins>
+	</sheets>
+</T3DataStructure>

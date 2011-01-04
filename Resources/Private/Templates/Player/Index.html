@@ -1,0 +1,53 @@
+<div id="{player_id}">Video is loading ...</div>
+<script type="text/javascript">
+	var player_id = "{player_id}";
+	var flashplayer = "{flashplayer}";
+	var backcolor = "{backcolor}";
+	var fontcolor = "{fontcolor}";
+	var lightcolor = "{lightcolor}";
+	var screencolor = "{screencolor}";
+	var file = "{file}";
+	var width = "{width}";
+	var height = "{height}";
+	var bufferlength = "{bufferlength}";
+	var volume = "{volume}";
+	var autostart = ("{autostart}" == "1")?true:false;
+	var mute = ("{mute}" == "1")?true:false;
+	var stretching = "{stretching}";
+	var repeat = "{repeat}";
+	var facebookPlugin = ("{facebookPlugin}" == "1")?true:false;
+	/* <![CDATA[ */
+	var config = {
+		flashplayer: flashplayer,
+		backcolor:backcolor,
+		fontcolor:fontcolor,
+		lightcolor:lightcolor,
+		screencolor:screencolor,
+		id: player_id,
+		file: file,
+		width: width,
+		height: height,
+		bufferlength:bufferlength,
+		autostart:autostart,
+		mute:mute,
+		volume:volume
+	};
+	if(repeat != "none"){
+		config.repeat = repeat;
+	}
+	if(stretching != "uniform"){
+		config.stretching = stretching;
+	}
+	if(facebookPlugin){
+		var plugins = {};
+		plugins.fbit = {
+			dock:true
+		};
+		config.plugins = plugins;
+	}
+	if(typeof(tx_jwplayer_list)=="undefined"){
+		tx_jwplayer_list = new Array();
+	}
+	tx_jwplayer_list[player_id] = config;
+	 /* ]]> */
+</script>
