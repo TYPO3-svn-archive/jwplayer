@@ -10,9 +10,9 @@ class Tx_Jwplayer_Controller_PlayerController extends Tx_Extbase_MVC_Controller_
 	public function indexAction(){
 		$extPath = t3lib_extMgm::siteRelPath ( 'jwplayer' );
 		$file = $extPath . 'Resources/Public/Player/jwplayer.js';
-		$GLOBALS ['TSFE']->getPageRenderer ()->addJsFile ( $file, TRUE );
+		$GLOBALS ['TSFE']->getPageRenderer ()->addJsLibrary ( 'jwplayer', $file, 'text/javascript',TRUE ,TRUE);
 		$file = $extPath . 'Resources/Public/Js/tx_jw_player.js';
-		$GLOBALS ['TSFE']->getPageRenderer ()->addJsFile ( $file, TRUE );
+		$GLOBALS ['TSFE']->getPageRenderer ()->addJsLibrary ( 'tx_jw_player',$file,'text/javascript',  TRUE );
 		$uploadPath = '/uploads/tx_jwplayer/';
 		$conf = unserialize ( $GLOBALS ['TYPO3_CONF_VARS'] ['EXT'] ['extConf'] ['jwplayer'] );
 		if(!empty($conf['path_licensed_player'])){

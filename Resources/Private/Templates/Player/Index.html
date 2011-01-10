@@ -30,6 +30,11 @@
 		bufferlength:bufferlength,
 		autostart:autostart,
 		mute:mute,
+		events: {
+			onPlay: function(e) { 
+				tx_jwplayer.clickTracking(this);
+			}
+		},
 		volume:volume
 	};
 	if(repeat != "none"){
@@ -45,16 +50,13 @@
 		};
 		config.plugins = plugins;
 	}
-	
-	console.log(typeof jwplayer);
 	if (typeof jwplayer != 'function') {
 		if(typeof(tx_jwplayer_list)=="undefined"){
 			tx_jwplayer_list = new Array();
 		}
 		tx_jwplayer_list[player_id] = config;
 	}else{
-		jwplayer(playerId).setup(config);
+		jwplayer(player_id).setup(config);
 	}
-	
 	 /* ]]> */
 </script>
