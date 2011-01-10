@@ -45,9 +45,16 @@
 		};
 		config.plugins = plugins;
 	}
-	if(typeof(tx_jwplayer_list)=="undefined"){
-		tx_jwplayer_list = new Array();
+	
+	console.log(typeof jwplayer);
+	if (typeof jwplayer != 'function') {
+		if(typeof(tx_jwplayer_list)=="undefined"){
+			tx_jwplayer_list = new Array();
+		}
+		tx_jwplayer_list[player_id] = config;
+	}else{
+		jwplayer(playerId).setup(config);
 	}
-	tx_jwplayer_list[player_id] = config;
+	
 	 /* ]]> */
 </script>
