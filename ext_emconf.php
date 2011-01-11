@@ -1,7 +1,7 @@
 <?php
 
 ########################################################################
-# Extension Manager/Repository config file for ext "aoe_survey".
+# Extension Manager/Repository config file for ext "jwplayer".
 #
 # Auto generated 23-09-2010 15:42
 #
@@ -29,7 +29,7 @@ $EM_CONF[$_EXTKEY] = array(
 	'modify_tables' => '',
 	'clearCacheOnLoad' => 0,
 	'lockType' => '',
-	'version' => '0.0.1',
+	'version' => '0.0.3',
 	'constraints' => array(
 		'depends' => array(
 			'cms' => '',
