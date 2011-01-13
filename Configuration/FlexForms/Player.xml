@@ -48,6 +48,34 @@
 							</config>
 						</TCEforms>
 					</settings.height>
+					<settings.controlbar>
+						<TCEforms>
+							<label>LLL:EXT:jwplayer/Resources/Private/Language/locallang_db.xml:flexform.settings.controlbar</label>
+							<config>
+								<type>select</type>
+								<maxitems>1</maxitems>
+								<items type="array">
+									<numIndex index="0" type="array">
+										<numIndex index="0">LLL:EXT:jwplayer/Resources/Private/Language/locallang_db.xml:flexform.settings.controlbar.bottom</numIndex>
+										<numIndex index="1">bottom</numIndex>
+									</numIndex>
+									<numIndex index="1" type="array">
+										<numIndex index="0">LLL:EXT:jwplayer/Resources/Private/Language/locallang_db.xml:flexform.settings.controlbar.top</numIndex>
+										<numIndex index="1">top</numIndex>
+									</numIndex>
+									<numIndex index="2" type="array">
+										<numIndex index="0">LLL:EXT:jwplayer/Resources/Private/Language/locallang_db.xml:flexform.settings.controlbar.over</numIndex>
+										<numIndex index="1">over</numIndex>
+									</numIndex>
+									<numIndex index="3" type="array">
+										<numIndex index="0">LLL:EXT:jwplayer/Resources/Private/Language/locallang_db.xml:flexform.settings.controlbar.none</numIndex>
+										<numIndex index="1">none</numIndex>
+									</numIndex>
+								</items>
+								<default>bottom</default>
+							</config>
+						</TCEforms>
+					</settings.controlbar>
 				</el>
 			</ROOT>
 		</common>

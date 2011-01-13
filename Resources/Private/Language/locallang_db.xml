@@ -28,6 +28,11 @@
 			<label index="flexform.settings.volume">Volume (0-99)</label>
 			<label index="flexform.settings.mute">Mute</label>
 			<label index="flexform.settings.facebookPlugin">Facebook Plugin</label>
+			<label index="flexform.settings.controlbar">position of controlbar</label>
+			<label index="flexform.settings.controlbar.bottom">bottom</label>
+			<label index="flexform.settings.controlbar.top">top</label>
+			<label index="flexform.settings.controlbar.over">over</label>
+			<label index="flexform.settings.controlbar.none">none visible</label>
 		</languageKey>
 	</data>
 </T3locallang>

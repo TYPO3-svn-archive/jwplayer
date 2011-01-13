@@ -33,6 +33,7 @@ class Tx_Jwplayer_Controller_PlayerController extends Tx_Extbase_MVC_Controller_
 		$this->view->assign ( 'width', $this->settings['width'] );
 		$this->view->assign ( 'height', $this->settings['height'] );
 		$this->view->assign ( 'autostart', $this->settings['autostart'] );
+		$this->view->assign ( 'controlbar', $this->settings['controlbar'] );
 		$this->view->assign ( 'repeat', $this->settings['repeat'] );
 		$this->view->assign ( 'bufferlength', $this->settings['bufferlength'] );
 		$this->view->assign ( 'stretching', $this->settings['stretching'] );
@@ -40,5 +41,4 @@ class Tx_Jwplayer_Controller_PlayerController extends Tx_Extbase_MVC_Controller_
 		$this->view->assign ( 'mute', $this->settings['mute'] );
 		$this->view->assign ( 'facebookPlugin', $this->settings['facebookPlugin'] );
 	}
-	
 }
