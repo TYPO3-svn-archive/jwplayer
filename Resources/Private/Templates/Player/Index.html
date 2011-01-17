@@ -22,6 +22,7 @@
 	var mute = ("{mute}" == "1")?true:false;
 	var stretching = "{stretching}";
 	var repeat = "{repeat}";
+	var image = ("{image}" != "")?"{image}":undefined;
 	var facebookPlugin = ("{facebookPlugin}" == "1")?true:false;
 	/* <![CDATA[ */
 	var config = {
@@ -38,6 +39,7 @@
 		autostart:autostart,
 		controlbar:controlbar,
 		mute:mute,
+		image:image,
 		events: {
 			onPlay: function(e) { 
 				tx_jwplayer.clickTracking(this);

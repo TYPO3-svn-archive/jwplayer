@@ -23,12 +23,18 @@ class Tx_Jwplayer_Controller_PlayerController extends Tx_Extbase_MVC_Controller_
 			$uri = substr($uri, strlen(PATH_site));
 			$path_player = '/'.$uri;
 		}
+		if($this->settings['image']){
+			$this->view->assign ( 'image', $uploadPath.$this->settings['image'] );
+		}else{
+			$this->view->assign ( 'image', '' );
+		}
 		$this->view->assign ( 'player_id', uniqid('player'));
 		$this->view->assign ( 'flashplayer', $path_player);
 		$this->view->assign ( 'backcolor', $conf['backcolor'] );
 		$this->view->assign ( 'fontcolor', $conf['fontcolor'] );
 		$this->view->assign ( 'lightcolor', $conf['lightcolor'] );
 		$this->view->assign ( 'screencolor', $conf['screencolor'] );
+		
 		$this->view->assign ( 'file', $uploadPath.$this->settings['movie'] );
 		$this->view->assign ( 'width', $this->settings['width'] );
 		$this->view->assign ( 'height', $this->settings['height'] );
