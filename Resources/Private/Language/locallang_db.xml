@@ -27,6 +27,7 @@
 			<label index="flexform.settings.stretching">Stretching</label>
 			<label index="flexform.settings.volume">Volume (0-99)</label>
 			<label index="flexform.settings.mute">Mute</label>
+			<label index="flexform.settings.image">Start Image</label>
 			<label index="flexform.settings.facebookPlugin">Facebook Plugin</label>
 			<label index="flexform.settings.controlbar">position of controlbar</label>
 			<label index="flexform.settings.controlbar.bottom">bottom</label>
