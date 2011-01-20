@@ -224,5 +224,46 @@
 				</el>
 			</ROOT>
 		</plugins>
+		<metatags>
+			<ROOT>
+				<type>array</type>
+				<TCEforms>
+					<sheetTitle>LLL:EXT:jwplayer/Resources/Private/Language/locallang_db.xml:flexform.sheets.metatags</sheetTitle>
+				</TCEforms>
+				<el>
+					<settings.add_metatags>
+						<TCEforms>
+							<label>LLL:EXT:jwplayer/Resources/Private/Language/locallang_db.xml:flexform.settings.add_metatags</label>
+							<config>
+								<type>check</type>
+								<default>1</default>
+							</config>
+						</TCEforms>
+					</settings.add_metatags>
+					<settings.metatag_title>
+						<TCEforms>
+							<label>LLL:EXT:jwplayer/Resources/Private/Language/locallang_db.xml:flexform.settings.metatag_title</label>
+							<config>
+								<type>input</type>
+								<eval>trim</eval>
+								<size>20</size>
+								<max>100</max>
+							</config>
+						</TCEforms>
+					</settings.metatag_title>
+					<settings.metatag_description>
+						<TCEforms>
+							<label>LLL:EXT:jwplayer/Resources/Private/Language/locallang_db.xml:flexform.settings.metatag_description</label>
+							<config>
+								<type>input</type>
+								<eval>trim</eval>
+								<size>20</size>
+								<max>255</max>
+							</config>
+						</TCEforms>
+					</settings.metatag_description>
+				</el>
+			</ROOT>
+		</metatags>
 	</sheets>
 </T3DataStructure>

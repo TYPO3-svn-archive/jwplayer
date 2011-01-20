@@ -10,6 +10,7 @@
 			<label index="flexform.sheets.picture">Picture</label>
 			<label index="flexform.sheets.sound">Sound</label>
 			<label index="flexform.sheets.plugins">Plugins</label>
+			<label index="flexform.sheets.metatags">Meta Tags</label>
 			<label index="flexform.settings.movie">Movie</label>
 			<label index="flexform.settings.width">Width</label>
 			<label index="flexform.settings.height">Height</label>
@@ -34,6 +35,9 @@
 			<label index="flexform.settings.controlbar.top">top</label>
 			<label index="flexform.settings.controlbar.over">over</label>
 			<label index="flexform.settings.controlbar.none">none visible</label>
+			<label index="flexform.settings.add_metatags">add meta tags (needed to share video on facebook)</label>
+			<label index="flexform.settings.metatag_title">title</label>
+			<label index="flexform.settings.metatag_description">description</label>
 		</languageKey>
 	</data>
 </T3locallang>

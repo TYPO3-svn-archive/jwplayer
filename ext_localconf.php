@@ -4,8 +4,9 @@ Tx_Extbase_Utility_Extension::configurePlugin(
 	$_EXTKEY,
 	'Pi1',
 	array(
-		'Player' => 'index',
+		'Player' => 'index,showVideo',
 	),
 	array(
+		'Player' => 'showVideo',
 	)
 );
