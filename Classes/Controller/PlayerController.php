@@ -47,12 +47,16 @@ class Tx_Jwplayer_Controller_PlayerController extends Tx_Extbase_MVC_Controller_
 			$title = empty($this->settings['metatag_title']) ? $this->settings['movie'] : $this->settings['metatag_title'];
 			$GLOBALS['TSFE']->getPageRenderer()->addMetaTag( '<meta property="og:title" content="'.$title.'"/>' );
 			$GLOBALS['TSFE']->getPageRenderer()->addMetaTag( '<meta property="og:description" content="'.$this->settings['metatag_description'].'"/>' );
+			$GLOBALS['TSFE']->getPageRenderer()->addMetaTag( '<meta property="og:type" content="video"/>' );
+			$GLOBALS['TSFE']->getPageRenderer()->addMetaTag( '<meta name="medium" content="video"/>' );
 			$GLOBALS['TSFE']->getPageRenderer()->addMetaTag( '<meta property="og:video" content="'.$this->createUrlToShowVideoAction().'"/>' );
 			$GLOBALS['TSFE']->getPageRenderer()->addMetaTag( '<meta property="og:video:height" content="'.$this->settings['height'].'"/>' );
 			$GLOBALS['TSFE']->getPageRenderer()->addMetaTag( '<meta property="og:video:width" content="'.$this->settings['width'].'"/>' );
 			$GLOBALS['TSFE']->getPageRenderer()->addMetaTag( '<meta property="og:video:type" content="application/x-shockwave-flash"/>' );
-			//$GLOBALS['TSFE']->getPageRenderer()->addMetaTag( '<meta property="og:image" content="[img_src]"/>' );
-			//$GLOBALS['TSFE']->getPageRenderer()->addMetaTag( '<meta property="og:type" content="website"/>' );
+			if($this->getImagePath() !== '') {
+				$imgPath = $this->removeLastChar( t3lib_div::getIndpEnv('TYPO3_SITE_URL') ) . $this->getImagePath() ;
+				$GLOBALS['TSFE']->getPageRenderer()->addMetaTag( '<meta property="og:image" content="'.$imgPath.'">' );
+			}
 		}
 	}
 	/**
