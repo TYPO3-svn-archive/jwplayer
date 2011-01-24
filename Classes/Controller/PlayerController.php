@@ -129,7 +129,9 @@ class Tx_Jwplayer_Controller_PlayerController extends Tx_Extbase_MVC_Controller_
 		$flashPlayerData['bufferlength'] = $this->settings['bufferlength'];
 		$flashPlayerData['controlbar.position'] = $this->settings['controlbar'];
 		$flashPlayerData['file'] = self::UPLOAD_PATH . $this->settings['movie'];
-		$flashPlayerData['image'] = ($this->getImagePath() == '') ? 'undefined' : $this->getImagePath();
+		if($this->getImagePath() !== '') {
+			$flashPlayerData['image'] = $this->getImagePath();
+		}
 		$flashPlayerData['mute'] = ($this->settings['mute'] == '1') ? 'true' : 'false';
 		$flashPlayerData['volume'] = $this->settings['volume'];
 
