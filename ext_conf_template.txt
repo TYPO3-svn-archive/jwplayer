@@ -1,0 +1,14 @@
+  # cat=basic//20; type=input; label= Path to licensed player
+path_licensed_player =
+
+  # cat=basic//20; type=input; label= Color, Controler / Playlist
+backcolor = FFFFFF
+
+  # cat=basic//20; type=input; label= Color, icon / text
+fontcolor = 000000
+
+  # cat=basic//20; type=input; label= Color, over icon / text
+lightcolor = FFFFFF
+
+  # cat=basic//20; type=input; label= Color, stage
+screencolor = 000000

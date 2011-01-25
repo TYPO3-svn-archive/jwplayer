@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<T3locallang>
+	<meta type="array">
+		<type>database</type>
+		<description>Language labels for database tables/fields belonging to extension 'jwplayer'</description>
+	</meta>
+	<data type="array">
+		<languageKey index="default" type="array">
+			<label index="flexform.sheets.common">Common</label>
+			<label index="flexform.sheets.picture">Picture</label>
+			<label index="flexform.sheets.sound">Sound</label>
+			<label index="flexform.sheets.plugins">Plugins</label>
+			<label index="flexform.sheets.metatags">Meta Tags</label>
+			<label index="flexform.settings.movie">Movie</label>
+			<label index="flexform.settings.width">Width</label>
+			<label index="flexform.settings.height">Height</label>
+			<label index="flexform.settings.autostart">Autostart</label>
+			<label index="flexform.settings.repeat">Repeat</label>
+			<label index="flexform.settings.repeat.none">None</label>
+			<label index="flexform.settings.repeat.single">Only the current file</label>
+			<label index="flexform.settings.repeat.list">Play the whole list once</label>
+			<label index="flexform.settings.repeat.always">Repeat play all files again</label>
+			<label index="flexform.settings.stretching.none">None</label>
+			<label index="flexform.settings.stretching.exactfit">Disproportionally stretch the video to exactly fit the display</label>
+			<label index="flexform.settings.stretching.uniform">Stretch the image/video while maintaining its aspect ratio</label>
+			<label index="flexform.settings.stretching.fill">Fill the display</label>
+			<label index="flexform.settings.bufferlength">Bufferlength</label>
+			<label index="flexform.settings.stretching">Stretching</label>
+			<label index="flexform.settings.volume">Volume (0-99)</label>
+			<label index="flexform.settings.mute">Mute</label>
+			<label index="flexform.settings.image">Start Image</label>
+			<label index="flexform.settings.facebookPlugin">Facebook Plugin</label>
+			<label index="flexform.settings.controlbar">position of controlbar</label>
+			<label index="flexform.settings.controlbar.bottom">bottom</label>
+			<label index="flexform.settings.controlbar.top">top</label>
+			<label index="flexform.settings.controlbar.over">over</label>
+			<label index="flexform.settings.controlbar.none">none visible</label>
+			<label index="flexform.settings.add_metatags">add meta tags (needed to share video on facebook)</label>
+			<label index="flexform.settings.metatag_title">title</label>
+			<label index="flexform.settings.metatag_description">description</label>
+		</languageKey>
+	</data>
+</T3locallang>
