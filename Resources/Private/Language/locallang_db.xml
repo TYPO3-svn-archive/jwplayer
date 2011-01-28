@@ -11,7 +11,9 @@
 			<label index="flexform.sheets.sound">Sound</label>
 			<label index="flexform.sheets.plugins">Plugins</label>
 			<label index="flexform.sheets.metatags">Meta Tags</label>
+			<label index="flexform.settings.movieItem">Movie Item</label>
 			<label index="flexform.settings.movie">Movie</label>
+			<label index="flexform.settings.previewImage">Preview Image</label>
 			<label index="flexform.settings.width">Width</label>
 			<label index="flexform.settings.height">Height</label>
 			<label index="flexform.settings.autostart">Autostart</label>
@@ -28,7 +30,6 @@
 			<label index="flexform.settings.stretching">Stretching</label>
 			<label index="flexform.settings.volume">Volume (0-99)</label>
 			<label index="flexform.settings.mute">Mute</label>
-			<label index="flexform.settings.image">Start Image</label>
 			<label index="flexform.settings.facebookPlugin">Facebook Plugin</label>
 			<label index="flexform.settings.controlbar">position of controlbar</label>
 			<label index="flexform.settings.controlbar.bottom">bottom</label>

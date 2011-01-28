@@ -21,16 +21,48 @@ class Tx_Jwplayer_Controller_PlayerController extends Tx_Extbase_MVC_Controller_
 	 */
 	public function indexAction() {
 		$this->addJavaScript();
-
 		$playerId = uniqid('player');
+
+		
 		$this->view->assign ( 'player_id', $playerId);
 		$this->view->assign ( 'flashplayer', $this->getPlayerPath());
 		$this->view->assign ( 'backcolor', $this->conf['backcolor'] );
 		$this->view->assign ( 'fontcolor', $this->conf['fontcolor'] );
 		$this->view->assign ( 'lightcolor', $this->conf['lightcolor'] );
 		$this->view->assign ( 'screencolor', $this->conf['screencolor'] );
-		$this->view->assign ( 'file', self::UPLOAD_PATH.$this->settings['movie'] );
-		$this->view->assign ( 'image', $this->getImagePath() );
+
+			/*
+			 * 	check count of movies. generate playliste when more than
+			 * 	one movie was set
+			 */
+		if ( count( $this->settings['moviesection'] ) > 1 ) {  
+		
+			# TODO create Playlist
+			# now only the first movie will use
+
+			$movieArray = array_shift( $this->settings['moviesection'] );
+
+			$this->view->assign ( 'file', self::UPLOAD_PATH.$movieArray['movieitem']['file'] );			                        $this->view->assign ( 'image', $this->getImagePath( $movieArray['movieitem']['image'] ) );
+		} else {
+		
+			$movieArray = array_shift( $this->settings['moviesection'] );
+			$previewImagePath = $this->getImagePath( $movieArray['movieitem']['image'] );
+
+			$this->view->assign ( 'file', self::UPLOAD_PATH.$movieArray['movieitem']['file'] );
+			$this->view->assign ( 'image', $previewImagePath );
+
+				// add movie specific meta tags for facebook	
+			if((boolean) $this->settings['add_metatags'] === TRUE) {
+
+				$title = empty($this->settings['metatag_title']) ? $movieArray['movieitem']['file'] : $this->settings['metatag_title'];
+				$GLOBALS['TSFE']->getPageRenderer()->addMetaTag( '<meta property="og:title" content="'.$title.'"/>' );
+
+				# TODO: Render image to 50x50 PX
+				$imgPath = $this->removeLastChar( t3lib_div::getIndpEnv('TYPO3_SITE_URL') ) . $previewImagePath ;
+				$GLOBALS['TSFE']->getPageRenderer()->addMetaTag( '<meta property="og:image" content="'.$imgPath.'">' );
+			}
+		}
+
 		$this->view->assign ( 'width', $this->settings['width'] );
 		$this->view->assign ( 'height', $this->settings['height'] );
 		$this->view->assign ( 'autostart', $this->settings['autostart'] );
@@ -44,8 +76,6 @@ class Tx_Jwplayer_Controller_PlayerController extends Tx_Extbase_MVC_Controller_
 
 		if((boolean) $this->settings['add_metatags'] === TRUE) {
 			// create metaTags
-			$title = empty($this->settings['metatag_title']) ? $this->settings['movie'] : $this->settings['metatag_title'];
-			$GLOBALS['TSFE']->getPageRenderer()->addMetaTag( '<meta property="og:title" content="'.$title.'"/>' );
 			$GLOBALS['TSFE']->getPageRenderer()->addMetaTag( '<meta property="og:description" content="'.$this->settings['metatag_description'].'"/>' );
 			$GLOBALS['TSFE']->getPageRenderer()->addMetaTag( '<meta property="og:type" content="video"/>' );
 			$GLOBALS['TSFE']->getPageRenderer()->addMetaTag( '<meta name="medium" content="video"/>' );
@@ -53,12 +83,11 @@ class Tx_Jwplayer_Controller_PlayerController extends Tx_Extbase_MVC_Controller_
 			$GLOBALS['TSFE']->getPageRenderer()->addMetaTag( '<meta property="og:video:height" content="'.$this->settings['height'].'"/>' );
 			$GLOBALS['TSFE']->getPageRenderer()->addMetaTag( '<meta property="og:video:width" content="'.$this->settings['width'].'"/>' );
 			$GLOBALS['TSFE']->getPageRenderer()->addMetaTag( '<meta property="og:video:type" content="application/x-shockwave-flash"/>' );
-			if($this->getImagePath() !== '') {
-				$imgPath = $this->removeLastChar( t3lib_div::getIndpEnv('TYPO3_SITE_URL') ) . $this->getImagePath() ;
-				$GLOBALS['TSFE']->getPageRenderer()->addMetaTag( '<meta property="og:image" content="'.$imgPath.'">' );
-			}
 		}
 	}
+
+	
+
 	/**
 	 * show video (we need this action to be able to share the video in facebook)
 	 * 
@@ -152,12 +181,13 @@ class Tx_Jwplayer_Controller_PlayerController extends Tx_Extbase_MVC_Controller_
 	}
 
 	/**
-	 * @return string
+	 * @param	string	$filename
+	 * @return 	string
 	 */
-	private function getImagePath() {
+	private function getImagePath( $filename ) {
 		$image = '';
-		if($this->settings['image']){
-			$image = self::UPLOAD_PATH . $this->settings['image'];
+		if( $filename ){
+			$image = self::UPLOAD_PATH . $filename;
 		}
 		return $image;
 	}
