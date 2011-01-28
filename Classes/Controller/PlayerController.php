@@ -130,9 +130,9 @@ class Tx_Jwplayer_Controller_PlayerController extends Tx_Extbase_MVC_Controller_
 	protected function addJavaScript() {
 		$extPath = t3lib_extMgm::siteRelPath ( 'jwplayer' );
 		$file = $extPath . 'Resources/Public/Player/jwplayer.js';
-		$GLOBALS ['TSFE']->getPageRenderer ()->addJsFile ( 'jwplayer', $file, 'text/javascript');
+		$GLOBALS ['TSFE']->getPageRenderer ()->addJsFile ( $file, 'text/javascript');
 		$file = $extPath . 'Resources/Public/Js/tx_jw_player.js';
-		$GLOBALS ['TSFE']->getPageRenderer ()->addJsFile ( 'tx_jw_player',$file,'text/javascript',  TRUE );
+		$GLOBALS ['TSFE']->getPageRenderer ()->addJsFile ( $file,'text/javascript',  TRUE );
 	}
 	/**
 	 * create URL to action 'showVideo'
