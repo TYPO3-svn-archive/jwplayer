@@ -66,11 +66,11 @@ class Tx_Jwplayer_Controller_PlayerController extends Tx_Extbase_MVC_Controller_
 	 */
 	public function showVideoAction($flash_player_config) {
 		$typo3SiteUrl = t3lib_div::getIndpEnv('TYPO3_SITE_URL');
-
 		$flashPlayerUrl = $this->removeLastChar($typo3SiteUrl) . $this->getPlayerPath() . '?';
 
 		// add flashPlayerConfig to URL, which depends on the video (these data were build in method 'getFlashPlayerConfig')
-		$flashPlayerConfig = explode(self::SEPARATOR_PARAM, $flash_player_config);
+		$flashPlayerConfig = base64_decode( $flash_player_config );
+		$flashPlayerConfig = explode(self::SEPARATOR_PARAM, $flashPlayerConfig);
 		foreach($flashPlayerConfig as $config) {
 			list($key, $val) = explode(self::SEPARATOR_VALUE, $config);
 			if(!empty($key) && !empty($val)) {
@@ -114,7 +114,7 @@ class Tx_Jwplayer_Controller_PlayerController extends Tx_Extbase_MVC_Controller_
 		$arguments['tx_jwplayer_pi1'] = array();
 		$arguments['tx_jwplayer_pi1']['action'] = 'showVideo';
 		$arguments['tx_jwplayer_pi1']['controller'] = 'Player';
-		$arguments['tx_jwplayer_pi1']['flash_player_config'] = $this->getFlashPlayerConfig();
+		$arguments['tx_jwplayer_pi1']['flash_player_config'] = base64_encode( $this->getFlashPlayerConfig() );
 		$url = $this->uriBuilder->setArguments($arguments)->setCreateAbsoluteUri(TRUE)->buildFrontendUri();
 		return $url;
 	}
