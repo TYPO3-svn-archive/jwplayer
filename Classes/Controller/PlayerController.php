@@ -113,7 +113,7 @@ class Tx_Jwplayer_Controller_PlayerController extends Tx_Extbase_MVC_Controller_
 		$settings = $this->settings;
 		$settings['autostart']= TRUE;
 		$settings['movie']= self::UPLOAD_PATH.$settings['movie'];
-		$arguments['tx_jwplayer_pi1']['flash_player_config'] = $this->flashConfigGenerator->encode($settingsm, $this->getImagePath());
+		$arguments['tx_jwplayer_pi1']['flash_player_config'] = $this->flashConfigGenerator->encode($settings, $this->getImagePath());
 		$url = $this->uriBuilder->setArguments($arguments)->setCreateAbsoluteUri(TRUE)->buildFrontendUri();
 		return $url;
 	}
