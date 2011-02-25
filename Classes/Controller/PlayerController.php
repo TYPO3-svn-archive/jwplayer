@@ -7,14 +7,24 @@ class Tx_Jwplayer_Controller_PlayerController extends Tx_Extbase_MVC_Controller_
 	/**
 	 * define separators for params and their values
 	 */
-	const SEPARATOR_PARAM = '|';
-	const SEPARATOR_VALUE = ':';
 	const UPLOAD_PATH = '/uploads/tx_jwplayer/';
-
 	/**
 	 * @var array
 	 */
 	private $conf;
+	/**
+	 * @var Tx_Jwplayer_FlashConfigGenerator
+	 */
+	private $flashConfigGenerator;
+	/**
+	 * Initializes the current action
+	 *
+	 * @return void
+	 */
+	protected function initializeAction() {
+		$this->flashConfigGenerator = t3lib_div::makeInstance ( 'Tx_Jwplayer_FlashConfigGenerator' );
+		$this->conf = unserialize ( $GLOBALS ['TYPO3_CONF_VARS'] ['EXT'] ['extConf'] ['jwplayer'] );
+	}
 
 	/**
 	 * @return string
@@ -49,9 +59,7 @@ class Tx_Jwplayer_Controller_PlayerController extends Tx_Extbase_MVC_Controller_
 			$GLOBALS['TSFE']->getPageRenderer()->addMetaTag( '<meta property="og:description" content="'.$this->settings['metatag_description'].'"/>' );
 			$GLOBALS['TSFE']->getPageRenderer()->addMetaTag( '<meta property="og:type" content="video"/>' );
 			$GLOBALS['TSFE']->getPageRenderer()->addMetaTag( '<meta name="medium" content="video"/>' );
-			$GLOBALS['TSFE']->getPageRenderer()->addMetaTag( '<meta property="og:video" content="'.$this->createUrlToShowVideoAction().'"/>' );
-			$GLOBALS['TSFE']->getPageRenderer()->addMetaTag( '<meta property="og:video:height" content="'.$this->settings['height'].'"/>' );
-			$GLOBALS['TSFE']->getPageRenderer()->addMetaTag( '<meta property="og:video:width" content="'.$this->settings['width'].'"/>' );
+			$GLOBALS['TSFE']->getPageRenderer()->addMetaTag( '<meta property="og:video" content="'.$this->createVideoUrl().'"/>' );
 			$GLOBALS['TSFE']->getPageRenderer()->addMetaTag( '<meta property="og:video:type" content="application/x-shockwave-flash"/>' );
 			if($this->getImagePath() !== '') {
 				$imgPath = $this->removeLastChar( t3lib_div::getIndpEnv('TYPO3_SITE_URL') ) . $this->getImagePath() ;
@@ -67,17 +75,7 @@ class Tx_Jwplayer_Controller_PlayerController extends Tx_Extbase_MVC_Controller_
 	public function showVideoAction($flash_player_config) {
 		$typo3SiteUrl = t3lib_div::getIndpEnv('TYPO3_SITE_URL');
 		$flashPlayerUrl = $this->removeLastChar($typo3SiteUrl) . $this->getPlayerPath() . '?';
-
-		// add flashPlayerConfig to URL, which depends on the video (these data were build in method 'getFlashPlayerConfig')
-		$flashPlayerConfig = base64_decode( $flash_player_config );
-		$flashPlayerConfig = explode(self::SEPARATOR_PARAM, $flashPlayerConfig);
-		foreach($flashPlayerConfig as $config) {
-			list($key, $val) = explode(self::SEPARATOR_VALUE, $config);
-			if(!empty($key) && !empty($val)) {
-				$flashPlayerUrl .= $key.'='.$val.'&';
-			}
-		}
-
+		$flashPlayerUrl .= $this->flashConfigGenerator->decode($flash_player_config);
 		// add flashPlayerConfig to URL, which depends on this plugin
 		$flashPlayerConfig = array();
 		$flashPlayerConfig['netstreambasepath'] = $typo3SiteUrl;
@@ -90,9 +88,7 @@ class Tx_Jwplayer_Controller_PlayerController extends Tx_Extbase_MVC_Controller_
 			$flashPlayerUrl .= $key.'='.$val.'&';
 		}
 		$flashPlayerUrl = $this->removeLastChar($flashPlayerUrl);
-
-		header( 'Location: '.$flashPlayerUrl );
-		exit();
+		$this->redirectToURI($flashPlayerUrl);
 	}
 
 	/**
@@ -109,48 +105,18 @@ class Tx_Jwplayer_Controller_PlayerController extends Tx_Extbase_MVC_Controller_
 	 * create URL to action 'showVideo'
 	 * @return string
 	 */
-	protected function createUrlToShowVideoAction() {
+	private function createVideoUrl() {
 		$arguments = array();
 		$arguments['tx_jwplayer_pi1'] = array();
 		$arguments['tx_jwplayer_pi1']['action'] = 'showVideo';
 		$arguments['tx_jwplayer_pi1']['controller'] = 'Player';
-		$arguments['tx_jwplayer_pi1']['flash_player_config'] = base64_encode( $this->getFlashPlayerConfig() );
+		$settings = $this->settings;
+		$settings['autostart']= TRUE;
+		$settings['movie']= self::UPLOAD_PATH.$settings['movie'];
+		$arguments['tx_jwplayer_pi1']['flash_player_config'] = $this->flashConfigGenerator->encode($settingsm, $this->getImagePath());
 		$url = $this->uriBuilder->setArguments($arguments)->setCreateAbsoluteUri(TRUE)->buildFrontendUri();
 		return $url;
 	}
-	/**
-	 * get string which contains all flash-player-data, which comes from plugin-settings and is needed by action 'showVideo'
-	 * 
-	 * @return string
-	 */
-	protected function getFlashPlayerConfig() {
-		$flashPlayerData = array();
-		$flashPlayerData['autostart'] = ($this->settings['autostart'] == '1') ? 'true' : 'false';
-		$flashPlayerData['bufferlength'] = $this->settings['bufferlength'];
-		$flashPlayerData['controlbar.position'] = $this->settings['controlbar'];
-		$flashPlayerData['file'] = self::UPLOAD_PATH . $this->settings['movie'];
-		if($this->getImagePath() !== '') {
-			$flashPlayerData['image'] = $this->getImagePath();
-		}
-		$flashPlayerData['mute'] = ($this->settings['mute'] == '1') ? 'true' : 'false';
-		$flashPlayerData['volume'] = $this->settings['volume'];
-
-		$flashPlayerDataString = '';
-		foreach($flashPlayerData as $key => $val) {
-			$flashPlayerDataString .= $key . self::SEPARATOR_VALUE . $val . self::SEPARATOR_PARAM;
-		}
-		$flashPlayerDataString = $this->removeLastChar($flashPlayerDataString);
-
-		return $flashPlayerDataString;
-	}
-	
-	/**
-	 * Initializes the controller before invoking an action method.
-	 */
-	protected function initializeAction() {
-		$this->conf = unserialize ( $GLOBALS ['TYPO3_CONF_VARS'] ['EXT'] ['extConf'] ['jwplayer'] );
-	}
-
 	/**
 	 * @return string
 	 */
