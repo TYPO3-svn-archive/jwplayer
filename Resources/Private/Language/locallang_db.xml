@@ -11,7 +11,9 @@
 			<label index="flexform.sheets.sound">Sound</label>
 			<label index="flexform.sheets.plugins">Plugins</label>
 			<label index="flexform.sheets.metatags">Meta Tags</label>
+			<label index="flexform.settings.movieItem">Movie Item</label>
 			<label index="flexform.settings.movie">Movie</label>
+			<label index="flexform.settings.previewImage">Preview Image</label>
 			<label index="flexform.settings.width">Width</label>
 			<label index="flexform.settings.height">Height</label>
 			<label index="flexform.settings.autostart">Autostart</label>
