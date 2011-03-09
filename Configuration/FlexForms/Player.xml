@@ -32,10 +32,20 @@
 												<uploadfolder>uploads/tx_jwplayer/</uploadfolder>
 												<size>1</size>
 												<maxitems>1</maxitems>
-												<minitems>1</minitems>
+												<minitems>0</minitems>
 											</config>
 										</TCEforms>
 									</file>
+									<url>
+										<TCEforms>
+											<label>LLL:EXT:jwplayer/Resources/Private/Language/locallang_db.xml:flexform.settings.url</label>
+											<config>
+												<type>input</type>
+												<size>30</size>
+												<default></default>
+											</config>
+										</TCEforms>
+									</url>
 									<image>
 										<TCEforms>
 											<label>LLL:EXT:jwplayer/Resources/Private/Language/locallang_db.xml:flexform.settings.previewImage</label>

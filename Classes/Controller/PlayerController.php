@@ -8,14 +8,22 @@ class Tx_Jwplayer_Controller_PlayerController extends Tx_Extbase_MVC_Controller_
 	 * define separators for params and their values
 	 */
 	const UPLOAD_PATH = '/uploads/tx_jwplayer/';
+	
 	/**
 	 * @var array
 	 */
 	private $conf;
+	
 	/**
 	 * @var Tx_Jwplayer_FlashConfigGenerator
 	 */
 	private $flashConfigGenerator;
+	
+	/**
+	 * View to render inline JS
+	 */
+	private $jsView;
+	
 	/**
 	 * Initializes the current action
 	 *
@@ -23,16 +31,19 @@ class Tx_Jwplayer_Controller_PlayerController extends Tx_Extbase_MVC_Controller_
 	 */
 	protected function initializeAction() {
 		$this->flashConfigGenerator = t3lib_div::makeInstance ( 'Tx_Jwplayer_FlashConfigGenerator' );
+		
 		$this->conf = unserialize ( $GLOBALS ['TYPO3_CONF_VARS'] ['EXT'] ['extConf'] ['jwplayer'] );
 	}
+
 
 	/**
 	 * @return string
 	 */
 	public function indexAction() {
 		$this->addJavaScript();
-
+		
 		$playerId = uniqid('player');
+		
 		$this->view->assign ( 'player_id', $playerId);
 		$this->view->assign ( 'flashplayer', $this->getPlayerPath());
 		$this->view->assign ( 'backcolor', $this->conf['backcolor'] );
@@ -49,6 +60,8 @@ class Tx_Jwplayer_Controller_PlayerController extends Tx_Extbase_MVC_Controller_
 		$this->view->assign ( 'volume', $this->settings['volume'] );
 		$this->view->assign ( 'mute', $this->settings['mute'] );
 		$this->view->assign ( 'facebookPlugin', $this->settings['facebookPlugin'] );
+		
+
 		
 		$this->setPlaylist();
 
@@ -106,33 +119,71 @@ class Tx_Jwplayer_Controller_PlayerController extends Tx_Extbase_MVC_Controller_
 		} else {
 		
 			$movieArray = array_shift( $this->settings['moviesection'] );
-			$previewImagePath = $this->getImagePath( $movieArray['movieitem']['image'] );
+			
+			if( $filePath = $this->solveVideoPath( $movieArray ) ) {
+			
+				$previewImagePath = $this->getImagePath( $movieArray['movieitem']['image'] );
 
-			$this->view->assign ( 'file', self::UPLOAD_PATH.$movieArray['movieitem']['file'] );
-			$this->view->assign ( 'image', $previewImagePath );
+				$this->view->assign ( 'file', $filePath );
+				$this->view->assign ( 'image', $previewImagePath );
 
-				// add movie specific meta tags for facebook	
-			if((boolean) $this->settings['add_metatags'] === TRUE) {
+					// add movie specific meta tags for facebook	
+				if((boolean) $this->settings['add_metatags'] === TRUE) {
 
-				$title = empty($this->settings['metatag_title']) ? $movieArray['movieitem']['file'] : $this->settings['metatag_title'];
-				$GLOBALS['TSFE']->getPageRenderer()->addMetaTag( '<meta property="og:title" content="'.$title.'"/>' );
+					$title = empty($this->settings['metatag_title']) ? $movieArray['movieitem']['file'] : $this->settings['metatag_title'];
+					$GLOBALS['TSFE']->getPageRenderer()->addMetaTag( '<meta property="og:title" content="'.$title.'"/>' );
 
-				# TODO: Render image to 50x50 PX
-				$imgPath = $this->removeLastChar( t3lib_div::getIndpEnv('TYPO3_SITE_URL') ) . $previewImagePath ;
-				$GLOBALS['TSFE']->getPageRenderer()->addMetaTag( '<meta property="og:image" content="'.$imgPath.'">' );
+					# TODO: Render image to 50x50 PX
+					$imgPath = $this->removeLastChar( t3lib_div::getIndpEnv('TYPO3_SITE_URL') ) . $previewImagePath ;
+					$GLOBALS['TSFE']->getPageRenderer()->addMetaTag( '<meta property="og:image" content="'.$imgPath.'">' );
+				}
 			}
 		}	
+		
+	}
+	
+	protected function solveVideoPath( $itemArray ) {
+	
+		$videoPath = false;
+	
+		if( $itemArray['movieitem']['file'] ) {
+		
+			$videoPath = self::UPLOAD_PATH . $itemArray['movieitem']['file'];
+		
+		} elseif( $this->checkUrl( $itemArray['movieitem']['url']  ) ) {
+			$videoPath = $itemArray['movieitem']['url'] = $itemArray['movieitem']['url']; 
+		}
+		
+		return $videoPath;
+	}
+	
+	/**
+	 *	Check Url 
+	 *
+	 *	@param	string	$url
+	 *	@return	bool
+	 */
+	private function checkUrl( $url ) {
+	
+		$flag = false;
+	
+		if( preg_match("/[h][t]{2}[p][\:][\/]{2}[w.0-9]{0,4}[a-zA-Z0-9.-]{2,40}[.][a-zA-Z]{2,7}/", $url ) ) {
+			$flag = true;
+		}
+		
+		return $flag;
 	}
 
 	/**
 	 * add javascript to page
 	 */
 	protected function addJavaScript() {
+	
 		$extPath = t3lib_extMgm::siteRelPath ( 'jwplayer' );
 		$file = $extPath . 'Resources/Public/Player/jwplayer.js';
-		$GLOBALS ['TSFE']->getPageRenderer ()->addJsFile ( $file, 'text/javascript');
+		$GLOBALS ['TSFE']->getPageRenderer ()->addJsFooterFile( $file);
 		$file = $extPath . 'Resources/Public/Js/tx_jw_player.js';
-		$GLOBALS ['TSFE']->getPageRenderer ()->addJsFile ( $file,'text/javascript',  TRUE );
+		$GLOBALS ['TSFE']->getPageRenderer ()->addJsFooterFile( $file );		
 	}
 	/**
 	 * create URL to action 'showVideo'
