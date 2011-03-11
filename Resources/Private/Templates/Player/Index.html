@@ -27,6 +27,15 @@
 	var repeat = "{repeat}";
 	var image = "{image}";
 	var facebookPlugin = ("{facebookPlugin}" == "1")?true:false;
+	var playlistposition = "{playlist_position}";
+	var playlistsize = {playlist_size};
+	var playlist = [
+	<f:for each="{playlistItems}" as="item" iteration="counter"><f:if condition='{counter.isLast}'><f:then>
+	<f:escape>{</f:escape>title: '{item.title}', description: '{item.description}', <f:if condition="{item.duration} > 0"><f:then>duration:{item.duration},</f:then></f:if> file:'{item.file}', image: '{item.image}'<f:escape>}</f:escape>
+	</f:then><f:else>
+	<f:escape>{</f:escape>title: '{item.title}', description: '{item.description}', <f:if condition="{item.duration} > 0"><f:then>duration:{item.duration},</f:then></f:if> file:'{item.file}', image: '{item.image}'<f:escape>}</f:escape>,
+	</f:else></f:if></f:for>
+	];
 	/* <![CDATA[ */
 	var config = {
 		flashplayer: flashplayer,
@@ -47,8 +56,13 @@
 				tx_jwplayer.clickTracking(this);
 			}
 		},
-		volume:volume
+		volume:volume,
+		"playlist.position": playlistposition,
+		"playlist.size": playlistsize
 	};
+	if( playlistposition != 'none' ) {
+		config.playlist = playlist;
+	}
 	if(image != "") {
 		config.image = image;
 	}

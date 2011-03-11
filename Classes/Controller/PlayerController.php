@@ -50,8 +50,8 @@ class Tx_Jwplayer_Controller_PlayerController extends Tx_Extbase_MVC_Controller_
 		$this->view->assign ( 'fontcolor', $this->conf['fontcolor'] );
 		$this->view->assign ( 'lightcolor', $this->conf['lightcolor'] );
 		$this->view->assign ( 'screencolor', $this->conf['screencolor'] );
-		$this->view->assign ( 'width', $this->settings['width'] );
-		$this->view->assign ( 'height', $this->settings['height'] );
+		$this->view->assign ( 'width', $this->getPlayerWidth() );
+		$this->view->assign ( 'height', $this->getPlayerHeight() );
 		$this->view->assign ( 'autostart', $this->settings['autostart'] );
 		$this->view->assign ( 'controlbar', $this->settings['controlbar'] );
 		$this->view->assign ( 'repeat', $this->settings['repeat'] );
@@ -60,8 +60,8 @@ class Tx_Jwplayer_Controller_PlayerController extends Tx_Extbase_MVC_Controller_
 		$this->view->assign ( 'volume', $this->settings['volume'] );
 		$this->view->assign ( 'mute', $this->settings['mute'] );
 		$this->view->assign ( 'facebookPlugin', $this->settings['facebookPlugin'] );
-		
-
+		$this->view->assign ( 'playlist_position', $this->getPlaylistPosition() );
+		$this->view->assign ( 'playlist_size', $this->settings['playlistsize'] );
 		
 		$this->setPlaylist();
 
@@ -74,6 +74,68 @@ class Tx_Jwplayer_Controller_PlayerController extends Tx_Extbase_MVC_Controller_
 			$GLOBALS['TSFE']->getPageRenderer()->addMetaTag( '<meta property="og:video:type" content="application/x-shockwave-flash"/>' );
 		}
 	}
+	
+	/**
+	 *	Return setting for playlist position
+	 *	When less than 2 items are available don't show playlist
+	 *	@return	string
+	 */
+	protected function getPlaylistPosition() {
+	
+		$position = $this->settings['playlistposition'];
+		
+		if( !$this->hasPlaylist() ) {
+			$position = 'none';
+		}
+		
+		return $position;
+	}
+	
+	/**
+	 *	Check if playlist should be shown
+	 *	@return	bool	
+	 */
+	protected function hasPlaylist() {
+	
+		$flag = false;
+		
+		if( count( $this->settings['moviesection'] ) > 1 ) {
+			$flag = true;
+		}
+		
+		return $flag;
+	}
+	
+	/**
+	 *	Calculate width of player
+	 *	@return	integer	
+	 */
+	protected function getPlayerWidth() {
+	
+		$width = $this->settings['width'];
+		
+		if ( $this->hasPlaylist() && ( $this->settings['playlistposition'] == 'left' || $this->settings['playlistposition'] == 'right' ) ) {
+			$width = $width + $this->settings['playlistsize'];
+		}
+		
+		return $width;
+	}
+	
+	/**
+	 *	Calculate height of player
+	 *	@return	integer	
+	 */
+	protected function getPlayerHeight() {
+	
+		$height = $this->settings['height'];
+		
+		if ( $this->hasPlaylist() && ( $this->settings['playlistposition'] == 'top' || $this->settings['playlistposition'] == 'bottom' ) ) {
+			$height = $height + $this->settings['playlistsize'];
+		}
+		
+		return $height;
+	}
+	
 	/**
 	 * show video (we need this action to be able to share the video in facebook)
 	 * 
@@ -112,10 +174,19 @@ class Tx_Jwplayer_Controller_PlayerController extends Tx_Extbase_MVC_Controller_
 			# TODO create Playlist
 			# now only the first movie will use
 
-			$movieArray = array_shift( $this->settings['moviesection'] );
+			foreach( $this->settings['moviesection'] as $item ) {
+			
+				$playlist[] = array(
+					'title' => $item['movieitem']['title'],
+					'description' => $item['movieitem']['description'],
+					'duration' => ($item['movieitem']['duration']) ? $item['movieitem']['duration'] : 0,
+					'file' => $this->solveVideoPath( $item ),
+					'image' => $this->getImagePath( $item['movieitem']['image'] )
+				);
+			}
+			
+			$this->view->assign( 'playlistItems', $playlist );
 
-			$this->view->assign ( 'file', self::UPLOAD_PATH.$movieArray['movieitem']['file'] );			                        
-			$this->view->assign ( 'image', $this->getImagePath( $movieArray['movieitem']['image'] ) );
 		} else {
 		
 			$movieArray = array_shift( $this->settings['moviesection'] );

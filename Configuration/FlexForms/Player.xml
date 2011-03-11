@@ -21,6 +21,36 @@
 									<title>LLL:EXT:jwplayer/Resources/Private/Language/locallang_db.xml:flexform.settings.movieItem</title>
 								</tx_templavoila>
 								<el>
+									<title>
+										<TCEforms>
+											<label>LLL:EXT:jwplayer/Resources/Private/Language/locallang_db.xml:flexform.settings.title</label>
+											<config>
+												<type>input</type>
+												<size>30</size>
+												<default></default>
+											</config>
+										</TCEforms>
+									</title>
+									<description>
+										<TCEforms>
+											<label>LLL:EXT:jwplayer/Resources/Private/Language/locallang_db.xml:flexform.settings.description</label>
+											<config>
+												<type>input</type>
+												<size>100</size>
+												<default></default>
+											</config>
+										</TCEforms>
+									</description>
+									<duration>
+										<TCEforms>
+											<label>LLL:EXT:jwplayer/Resources/Private/Language/locallang_db.xml:flexform.settings.duration</label>
+											<config>
+												<type>input</type>
+												<size>5</size>
+												<default></default>
+											</config>
+										</TCEforms>
+									</duration>
 									<file>
 										<TCEforms>
 											<label>LLL:EXT:jwplayer/Resources/Private/Language/locallang_db.xml:flexform.settings.movie</label>
@@ -118,11 +148,60 @@
 				</el>
 			</ROOT>
 		</common>
-		<picture>
+		<playlist>
 			<ROOT>
 				<type>array</type>
 				<TCEforms>
-					<sheetTitle>LLL:EXT:jwplayer/Resources/Private/Language/locallang_db.xml:flexform.sheets.picture</sheetTitle>
+					<sheetTitle>LLL:EXT:jwplayer/Resources/Private/Language/locallang_db.xml:flexform.sheets.playlist</sheetTitle>
+				</TCEforms>
+				<el>
+					<settings.playlistposition>
+						<TCEforms>
+							<label>LLL:EXT:jwplayer/Resources/Private/Language/locallang_db.xml:flexform.settings.playlistposition</label>
+							<config>
+								<type>select</type>
+								<maxitems>1</maxitems>
+								<items type="array">
+									<numIndex index="0" type="array">
+										<numIndex index="0">LLL:EXT:jwplayer/Resources/Private/Language/locallang_db.xml:flexform.settings.playlistposition.top</numIndex>
+										<numIndex index="1">top</numIndex>
+									</numIndex>
+									<numIndex index="1" type="array">
+										<numIndex index="0">LLL:EXT:jwplayer/Resources/Private/Language/locallang_db.xml:flexform.settings.playlistposition.left</numIndex>
+										<numIndex index="1">left</numIndex>
+									</numIndex>
+									<numIndex index="2" type="array">
+										<numIndex index="0">LLL:EXT:jwplayer/Resources/Private/Language/locallang_db.xml:flexform.settings.playlistposition.right</numIndex>
+										<numIndex index="1">right</numIndex>
+									</numIndex>
+									<numIndex index="3" type="array">
+										<numIndex index="0">LLL:EXT:jwplayer/Resources/Private/Language/locallang_db.xml:flexform.settings.controlbar.bottom</numIndex>
+										<numIndex index="1">bottom</numIndex>
+									</numIndex>
+								</items>
+								<default>right</default>
+							</config>
+						</TCEforms>
+					</settings.playlistposition>
+					<settings.playlistsize>
+						<TCEforms>
+							<label>LLL:EXT:jwplayer/Resources/Private/Language/locallang_db.xml:flexform.settings.playlistsize</label>
+							<config>
+								<type>input</type>
+								<eval>int</eval>
+								<size>3</size>
+								<default>250</default>
+							</config>
+						</TCEforms>
+					</settings.playlistsize>
+				</el>
+			</ROOT>
+		</playlist>
+		<video>
+			<ROOT>
+				<type>array</type>
+				<TCEforms>
+					<sheetTitle>LLL:EXT:jwplayer/Resources/Private/Language/locallang_db.xml:flexform.sheets.video</sheetTitle>
 				</TCEforms>
 				<el>
 					<settings.autostart>
@@ -200,7 +279,7 @@
 					</settings.stretching>
 				</el>
 			</ROOT>
-		</picture>
+		</video>
 		<sound>
 			<ROOT>
 				<type>array</type>
