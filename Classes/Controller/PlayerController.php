@@ -52,16 +52,16 @@ class Tx_Jwplayer_Controller_PlayerController extends Tx_Extbase_MVC_Controller_
 		$this->view->assign ( 'screencolor', $this->conf['screencolor'] );
 		$this->view->assign ( 'width', $this->getPlayerWidth() );
 		$this->view->assign ( 'height', $this->getPlayerHeight() );
-		$this->view->assign ( 'autostart', $this->settings['autostart'] );
-		$this->view->assign ( 'controlbar', $this->settings['controlbar'] );
-		$this->view->assign ( 'repeat', $this->settings['repeat'] );
-		$this->view->assign ( 'bufferlength', $this->settings['bufferlength'] );
-		$this->view->assign ( 'stretching', $this->settings['stretching'] );
-		$this->view->assign ( 'volume', $this->settings['volume'] );
-		$this->view->assign ( 'mute', $this->settings['mute'] );
-		$this->view->assign ( 'facebookPlugin', $this->settings['facebookPlugin'] );
+		$this->view->assign ( 'autostart', $this->getSetting( 'autostart' ) );
+		$this->view->assign ( 'controlbar', $this->getSetting( 'controlbar' ) );
+		$this->view->assign ( 'repeat', $this->getSetting( 'repeat' ) );
+		$this->view->assign ( 'bufferlength', $this->getSetting( 'bufferlength' ) );
+		$this->view->assign ( 'stretching', $this->getSetting( 'stretching' ) );
+		$this->view->assign ( 'volume', $this->getSetting( 'volume' ) );
+		$this->view->assign ( 'mute', $this->getSetting( 'mute' ) );
+		$this->view->assign ( 'facebookPlugin', $this->getSetting( 'facebookPlugin' ) );
 		$this->view->assign ( 'playlist_position', $this->getPlaylistPosition() );
-		$this->view->assign ( 'playlist_size', $this->settings['playlistsize'] );
+		$this->view->assign ( 'playlist_size', $this->getSetting( 'playlistsize' ) );
 		
 		$this->setPlaylist();
 
@@ -73,6 +73,19 @@ class Tx_Jwplayer_Controller_PlayerController extends Tx_Extbase_MVC_Controller_
 			$GLOBALS['TSFE']->getPageRenderer()->addMetaTag( '<meta property="og:video" content="'.$this->createVideoUrl().'"/>' );
 			$GLOBALS['TSFE']->getPageRenderer()->addMetaTag( '<meta property="og:video:type" content="application/x-shockwave-flash"/>' );
 		}
+	}
+	
+	
+	/**
+	 *	Return setting, selected by name
+	 *	@parameter	string	$name
+	 *	@return 	string
+	 */
+	protected function getSetting( $name ) {
+		
+		$value = ( $this->settings['overrideGlobal'][ $name ] ) ? $this->settings['overrideGlobal'][ $name ] : $this->settings[ $name ];
+		
+		return $value;
 	}
 	
 	/**
@@ -99,7 +112,7 @@ class Tx_Jwplayer_Controller_PlayerController extends Tx_Extbase_MVC_Controller_
 	
 		$flag = false;
 		
-		if( count( $this->settings['moviesection'] ) > 1 ) {
+		if( count( $this->getSetting( 'moviesection' ) ) > 1 ) {
 			$flag = true;
 		}
 		
@@ -112,10 +125,10 @@ class Tx_Jwplayer_Controller_PlayerController extends Tx_Extbase_MVC_Controller_
 	 */
 	protected function getPlayerWidth() {
 	
-		$width = $this->settings['width'];
+		$width = $this->getSetting( 'width' );
 		
-		if ( $this->hasPlaylist() && ( $this->settings['playlistposition'] == 'left' || $this->settings['playlistposition'] == 'right' ) ) {
-			$width = $width + $this->settings['playlistsize'];
+		if ( $this->hasPlaylist() && ( $this->getSetting( 'playlistposition' ) == 'left' || $this->getSetting( 'playlistposition' ) == 'right' ) ) {
+			$width = $width + $this->getSetting( 'playlistsize' );
 		}
 		
 		return $width;
@@ -127,10 +140,10 @@ class Tx_Jwplayer_Controller_PlayerController extends Tx_Extbase_MVC_Controller_
 	 */
 	protected function getPlayerHeight() {
 	
-		$height = $this->settings['height'];
+		$height = $this->getSetting( 'height' );
 		
-		if ( $this->hasPlaylist() && ( $this->settings['playlistposition'] == 'top' || $this->settings['playlistposition'] == 'bottom' ) ) {
-			$height = $height + $this->settings['playlistsize'];
+		if ( $this->hasPlaylist() && ( $this->getSetting( 'playlistposition' ) == 'top' || $this->getSetting( 'playlistposition' ) == 'bottom' ) ) {
+			$height = $height + $this->getSetting( 'playlistsize' );
 		}
 		
 		return $height;
