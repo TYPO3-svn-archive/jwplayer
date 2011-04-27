@@ -17,6 +17,10 @@ $TCA['tt_content']['types']['list']['subtypes_addlist']['jwplayer_pi1'] = 'pi_fl
 t3lib_extMgm::addPiFlexFormValue( 'jwplayer_pi1', 'FILE:EXT:jwplayer/Configuration/FlexForms/Player.xml');
 t3lib_extMgm::addStaticFile($_EXTKEY, 'Configuration/TypoScript', 'JW Player JS Files');
 
+$TCA['tt_content']['columns']['pi_flexform']['config']['ds_pointerField'] = 'list_type,CType';
+$TCA['tt_content']['columns']['pi_flexform']['config']['ds'][',jwplayer_pi1'] = 'FILE:EXT:jwplayer/Configuration/FlexForms/Player.xml';
+
+
 if (TYPO3_MODE=='BE')    {
     $GLOBALS['TBE_MODULES_EXT']['xMOD_db_new_content_el']['addElClasses']['tx_jwplayer_wizicon'] = t3lib_extMgm::extPath($_EXTKEY).'Classes/class.tx_jwplayer_wizicon.php';
 }
