@@ -39,7 +39,7 @@ class tx_jwplayer_wizicon {
 			'title' => $GLOBALS['LANG']->getLLL('jwplayer.title', $LL),
 			'description' => $GLOBALS['LANG']->getLLL('jwplayer.description', $LL),
 			'tt_content_defValues.' => array(
-				'CType' => 'jwplayer'
+				'CType' => 'jwplayer_pi1'
 			)
 		);
 
