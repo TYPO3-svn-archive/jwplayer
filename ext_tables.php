@@ -6,6 +6,10 @@ Tx_Extbase_Utility_Extension::registerPlugin(
 	'JW Player'
 );
 
+t3lib_extMgm::addTypoScriptSetup('
+	tt_content.jwplayer_pi1 < tt_content.list.20.jwplayer_pi1
+');
+
 
 t3lib_div::loadTCA('tt_content');
 
