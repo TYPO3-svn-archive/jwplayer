@@ -6,29 +6,13 @@ Tx_Extbase_Utility_Extension::registerPlugin(
 	'JW Player'
 );
 
-t3lib_extMgm::addPageTSConfig('
-	mod.wizards.newContentElement.wizardItems.header {
-		header = LLL:EXT:jwplayer/locallang.xml:jwplayer.title
-		elements.jwplayer {
-			icon = ../typo3conf/ext/jwplayer/tt_content_jwplayer.gif
-			title = LLL:EXT:jwplayer/locallang.xml:jwplayer.title
-			description = LLL:EXT:jwplayer/locallang.xml:jwplayer.description
-			tt_content_defValues {
-				CType = jwplayer_pi1
-			}
-		}
-	}
-	mod.wizards.newContentElement.wizardItems.header.show = LLL:EXT:jwplayer/locallang.xml:jwplayer.title
-
-');
-
-
 
 t3lib_div::loadTCA('tt_content');
 
 $TCA['tt_content']['types']['list']['subtypes_excludelist']['jwplayer_pi1'] = 'layout,recursive,select_key,pages';
 $TCA['tt_content']['types']['list']['subtypes_addlist']['jwplayer_pi1'] = 'pi_flexform';
 t3lib_extMgm::addPiFlexFormValue( 'jwplayer_pi1', 'FILE:EXT:jwplayer/Configuration/FlexForms/Player.xml');
+
 t3lib_extMgm::addStaticFile($_EXTKEY, 'Configuration/TypoScript', 'JW Player JS Files');
 
 t3lib_extMgm::addPlugin(array('LLL:EXT:jwplayer/locallang.xml:jwplayer.title', 'jwplayer_pi1', 'EXT:jwplayer/ext_icon.gif'), 'CType');
