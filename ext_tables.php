@@ -7,6 +7,7 @@ Tx_Extbase_Utility_Extension::registerPlugin(
 );
 
 t3lib_extMgm::addTypoScriptSetup('
+    tt_content.list.20.jwplayer_pi1.settings =< plugin.tx_jwplayer.settings
 	tt_content.jwplayer_pi1 < tt_content.list.20.jwplayer_pi1
 ');
 
