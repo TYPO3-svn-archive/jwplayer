@@ -40,10 +40,6 @@
 	/* <![CDATA[ */
 	var config = {
 		flashplayer: flashplayer,
-		backcolor:backcolor,
-		fontcolor:fontcolor,
-		lightcolor:lightcolor,
-		screencolor:screencolor,
 		id: player_id,
 		file: file,
 		width: width,
@@ -84,6 +80,11 @@
 	
 	if(skin) {
 		config.skin = skin;	
+	} else {
+		config.backcolor = backcolor;
+		config.fontColor = fontColor;
+		config.lightcolor = lightcolor;
+		config.screencolor = screencolor;
 	}
 
 	// init player
