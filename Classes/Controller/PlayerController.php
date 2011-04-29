@@ -62,6 +62,7 @@ class Tx_Jwplayer_Controller_PlayerController extends Tx_Extbase_MVC_Controller_
 		$this->view->assign ( 'facebookPlugin', $this->getSetting( 'facebookPlugin' ) );
 		$this->view->assign ( 'playlist_position', $this->getPlaylistPosition() );
 		$this->view->assign ( 'playlist_size', $this->getSetting( 'playlistsize' ) );
+		$this->view->assign ( 'skin', $this->getUploadPath( $this->getSetting( 'skin' ) ) );
 		
 		$this->setPlaylist();
 
@@ -194,7 +195,7 @@ class Tx_Jwplayer_Controller_PlayerController extends Tx_Extbase_MVC_Controller_
 					'description' => $item['movieitem']['description'],
 					'duration' => ($item['movieitem']['duration']) ? $item['movieitem']['duration'] : 0,
 					'file' => $this->solveVideoPath( $item ),
-					'image' => $this->getImagePath( $item['movieitem']['image'] )
+					'image' => $this->getUploadPath( $item['movieitem']['image'] )
 				);
 			}
 			
@@ -206,7 +207,7 @@ class Tx_Jwplayer_Controller_PlayerController extends Tx_Extbase_MVC_Controller_
 			
 			if( $filePath = $this->solveVideoPath( $movieArray ) ) {
 			
-				$previewImagePath = $this->getImagePath( $movieArray['movieitem']['image'] );
+				$previewImagePath = $this->getUploadPath( $movieArray['movieitem']['image'] );
 
 				$this->view->assign ( 'file', $filePath );
 				$this->view->assign ( 'image', $previewImagePath );
@@ -281,7 +282,7 @@ class Tx_Jwplayer_Controller_PlayerController extends Tx_Extbase_MVC_Controller_
 		$settings = $this->settings;
 		$settings['autostart']= TRUE;
 		$settings['movie']= self::UPLOAD_PATH.$settings['movie'];
-		$arguments['tx_jwplayer_pi1']['flash_player_config'] = $this->flashConfigGenerator->encode($settings, $this->getImagePath());
+		$arguments['tx_jwplayer_pi1']['flash_player_config'] = $this->flashConfigGenerator->encode($settings, $this->getUploadPath() );
 		$url = $this->uriBuilder->setArguments($arguments)->setCreateAbsoluteUri(TRUE)->buildFrontendUri();
 		return $url;
 	}
@@ -289,12 +290,12 @@ class Tx_Jwplayer_Controller_PlayerController extends Tx_Extbase_MVC_Controller_
 	 * @param	string	$filename
 	 * @return 	string
 	 */
-	private function getImagePath( $filename ) {
-		$image = '';
+	private function getUploadPath( $filename ) {
+		$path = '';
 		if( $filename ){
-			$image = self::UPLOAD_PATH . $filename;
+			$path = self::UPLOAD_PATH . $filename;
 		}
-		return $image;
+		return $path;
 	}
 	/**
 	 * @return string

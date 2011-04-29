@@ -26,6 +26,7 @@
 	var stretching = "{stretching}";
 	var repeat = "{repeat}";
 	var image = "{image}";
+	var skin = "{skin}";
 	var facebookPlugin = ("{facebookPlugin}" == "1")?true:false;
 	var playlistposition = "{playlist_position}";
 	var playlistsize = {playlist_size};
@@ -79,6 +80,10 @@
 			dock:true
 		};
 		config.plugins = plugins;
+	}
+	
+	if(skin) {
+		config.skin = skin;	
 	}
 
 	// init player
