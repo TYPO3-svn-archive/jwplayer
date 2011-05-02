@@ -9,6 +9,11 @@ class Tx_Jwplayer_Controller_PlayerController extends Tx_Extbase_MVC_Controller_
 	 */
 	const UPLOAD_PATH = '/uploads/tx_jwplayer/';
 	
+	var $allowedSkinExtension = array(
+		'zip',
+		'swf'
+	);
+	
 	/**
 	 * @var array
 	 */
@@ -97,18 +102,24 @@ class Tx_Jwplayer_Controller_PlayerController extends Tx_Extbase_MVC_Controller_
 	protected function getSkin() {
 	
 		$skinFile = '';
-		$allowedExtension = array(
-			'zip',
-			'swf'
-		);
 	
-		if( file_exists( PATH_site . $this->conf['skin'] ) && in_array( pathinfo( PATH_site . $this->conf['skin'], PATHINFO_EXTENSION ) ,$allowedExtension ) ) {
+		if( file_exists( PATH_site . $this->conf['skin'] ) && $this->checkSkinFileExtension( PATH_site . $this->conf['skin'] ) ) {
 			$skinFile = $this->conf['skin'];
 		} else {
 			$skinFile = $this->getUploadPath( $this->getSetting( 'skin' ) );
 		}
 		
 		return $skinFile;
+	}
+	
+	/**
+	 *	Check if file extension is allow
+	 *	@param	string	$file
+	 *	@return	bool
+	 */
+	protected function checkSkinFileExtension( $file) {
+		
+		return in_array( pathinfo( PATH_site . $this->conf['skin'], PATHINFO_EXTENSION ) ,$this->allowedSkinExtension );
 	}
 	
 	/**
