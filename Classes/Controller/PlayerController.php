@@ -62,7 +62,7 @@ class Tx_Jwplayer_Controller_PlayerController extends Tx_Extbase_MVC_Controller_
 		$this->view->assign ( 'facebookPlugin', $this->getSetting( 'facebookPlugin' ) );
 		$this->view->assign ( 'playlist_position', $this->getPlaylistPosition() );
 		$this->view->assign ( 'playlist_size', $this->getSetting( 'playlistsize' ) );
-		$this->view->assign ( 'skin', $this->getUploadPath( $this->getSetting( 'skin' ) ) );
+		$this->view->assign ( 'skin', $this->getSkin() );
 		
 		$this->setPlaylist();
 
@@ -87,6 +87,28 @@ class Tx_Jwplayer_Controller_PlayerController extends Tx_Extbase_MVC_Controller_
 		$value = ( $this->settings['overrideGlobal'][ $name ] ) ? $this->settings['overrideGlobal'][ $name ] : $this->settings[ $name ];
 		
 		return $value;
+	}
+	
+	/**
+	 *	Return path to skin file when is set
+	 *
+	 *	@return string
+	 */
+	protected function getSkin() {
+	
+		$skinFile = '';
+		$allowedExtension = array(
+			'zip',
+			'swf'
+		);
+	
+		if( file_exists( PATH_site . $this->conf['skin'] ) && in_array( pathinfo( PATH_site . $this->conf['skin'], PATHINFO_EXTENSION ) ,$allowedExtension ) ) {
+			$skinFile = $this->conf['skin'];
+		} else {
+			$skinFile = $this->getUploadPath( $this->getSetting( 'skin' ) );
+		}
+		
+		return $skinFile;
 	}
 	
 	/**
