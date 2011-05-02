@@ -9,7 +9,7 @@
 
 	// change player-id dynamicly via JS, that's important if we load instances of jwplayer via AJAX-requests!
 	document.getElementById("{player_id}").id=player_id;
-	
+
 	var flashplayer = "{flashplayer}";
 	var backcolor = "{backcolor}";
 	var fontcolor = "{fontcolor}";
@@ -39,7 +39,6 @@
 	];
 	/* <![CDATA[ */
 	var config = {
-		flashplayer: flashplayer,
 		id: player_id,
 		file: file,
 		width: width,
@@ -54,6 +53,19 @@
 			}
 		},
 		volume:volume,
+		modes: [
+			{
+				type: 'flash',
+				src: flashplayer
+			},
+			{
+				type: 'html5',
+				config: {
+					'file': '',
+					'provider': 'video'	
+				}
+			}
+		],
 		"playlist.position": playlistposition,
 		"playlist.size": playlistsize
 	};

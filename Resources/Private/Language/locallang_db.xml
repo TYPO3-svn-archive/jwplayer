@@ -15,7 +15,10 @@
 			<label index="flexform.sheets.metatags">Meta Tags</label>
 			<label index="flexform.sheets.skin">Skin</label>
 			<label index="flexform.settings.movieItem">Movie Item</label>
-			<label index="flexform.settings.movie">Movie</label>
+			<label index="flexform.settings.flashhtml5">H.264 format</label>
+			<label index="flexform.settings.flash">FLV and 3GPP</label>
+			<label index="flexform.settings.html5_ogv">OGG Theora</label>
+			<label index="flexform.settings.html5_webm">WebM</label>
 			<label index="flexform.settings.url">By URL</label>
 			<label index="flexform.settings.previewImage">Preview Image</label>
 			<label index="flexform.settings.title">Title</label>
