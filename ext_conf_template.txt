@@ -1,7 +1,7 @@
   # cat=basic//20; type=input; label= Path to licensed player
 path_licensed_player =
 
-  # cat=basic//20; type=input; label= Skin file, relative to path_licensed_player
+  # cat=basic//20; type=input; label= Path to skin file
 skin =
 
   # cat=basic//20; type=input; label= Color, Controler / Playlist
