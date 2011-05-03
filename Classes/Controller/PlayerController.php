@@ -311,13 +311,15 @@ class Tx_Jwplayer_Controller_PlayerController extends Tx_Extbase_MVC_Controller_
 	
 		$filePath = '';
 	
-		switch( $type ) {
-			case 'file':
-				$filePath = self::UPLOAD_PATH . $filename;
-				break;
-			case 'url':
-				$filePath = ( $this->checkUrl( $filename ) ) ? $filename : '';
-				break;
+		if( !empty( $filename ) ) {
+			switch( $type ) {
+				case 'file':
+					$filePath = self::UPLOAD_PATH . $filename;
+					break;
+				case 'url':
+					$filePath = ( $this->checkUrl( $filename ) ) ? $filename : '';
+					break;
+			}
 		}
 			
 		return $filePath;
