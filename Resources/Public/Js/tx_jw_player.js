@@ -16,7 +16,7 @@ var tx_jwplayer = {
 			wt_sendinfo(clickname,'click');
 		}
 	},
-	checkAvailableType:function() {
+	checkSupportedFormats:function() {
 		var v = document.createElement('video');
 		var vtype = new Array();
    
@@ -30,6 +30,21 @@ var tx_jwplayer = {
 	    if(vtype.length == 0) return false;
 	 	   
 	   	return vtype;
+	},
+	chooseHtml5Format:function( fileList ) {
+		var supported = tx_jwplayer.checkSupportedFormats();
+		var i = 0;
+		
+		while( i < supported.length ) {
+			
+			if( typeof( fileList[ supported[i] ] ) != 'undefined' && fileList[ supported[i] ] !='' ) {
+				return fileList[ supported[i] ];
+			}
+			
+			i++;
+		}
+		
+		return false;
 	}
 }
 

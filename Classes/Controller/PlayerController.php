@@ -279,7 +279,7 @@ class Tx_Jwplayer_Controller_PlayerController extends Tx_Extbase_MVC_Controller_
 			// flashhtml5
 		$flashhtml5 = $this->solveMoviePath( $itemArray['movieitem']['file_flashhtml5'] );
 		$movieArray['flash'] = $flashhtml5;
-		$movieArray['html5'][ pathinfo( $flashhtml, PATHINFO_EXTENSION ) ] = $flashhtml5;
+		$movieArray['html5'][ pathinfo( $flashhtml5, PATHINFO_EXTENSION ) ] = $flashhtml5;
 	
 			// flash
 		$movieArray['flash'] = $this->solveMoviePath( $itemArray['movieitem']['file_flash'] );

@@ -21,7 +21,7 @@
 	files["flash"] = "{file_flash}";
 	files["html5"] = new Array();
 	<f:for each="{files_html5}" as="movie" key="fileExt">
-		files["html5"]["{fileExt}"] = "{movie}";
+	files["html5"]["{fileExt}"] = "{movie}";
 	</f:for>
 	
 	var width = "{width}";
@@ -68,7 +68,7 @@
 			{
 				type: 'html5',
 				config: {
-					'file': '',
+					'file': tx_jwplayer.chooseHtml5Format( files["html5"] ),
 					'provider': 'video'	
 				}
 			}
