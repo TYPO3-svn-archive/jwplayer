@@ -3,6 +3,14 @@ var tx_jwplayer = {
 		if(typeof(tx_jwplayer_list)!="undefined"){
 			for (var playerId in tx_jwplayer_list){
 				var config = tx_jwplayer_list[playerId];
+				
+				if( html5File = tx_jwplayer.chooseHtml5Format( config.html5 ) ) {
+				
+					config.modes[1]['config'] = {
+						'file': html5File,
+						'provider': 'video'
+					};	
+				}
 				jwplayer(playerId).setup(config);
 			}
 		}

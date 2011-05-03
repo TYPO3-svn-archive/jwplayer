@@ -48,6 +48,7 @@
 	var config = {
 		id: player_id,
 		file: files["flash"],
+		html5: files["html5"],
 		width: width,
 		height: height,
 		bufferlength:bufferlength,
@@ -68,8 +69,8 @@
 			{
 				type: 'html5',
 				config: {
-					'file': tx_jwplayer.chooseHtml5Format( files["html5"] ),
-					'provider': 'video'	
+					'file': '',
+					'provider': 'video'
 				}
 			}
 		],
