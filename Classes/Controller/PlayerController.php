@@ -242,7 +242,9 @@ class Tx_Jwplayer_Controller_PlayerController extends Tx_Extbase_MVC_Controller_
 			
 				$previewImagePath = $this->getUploadPath( $itemArray['movieitem']['image'] );
 
-				$this->view->assign ( 'files', $movieList );
+				$this->view->assign ( 'file_flash', ( !empty( $movieList['flash'] ) ) ? $movieList['flash'] : $movieList['url'] );
+				$this->view->assign ( 'files_html5', $movieList['html5'] );
+				
 				$this->view->assign ( 'image', $previewImagePath );
 
 					// add movie specific meta tags for facebook	
