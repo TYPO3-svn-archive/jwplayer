@@ -19,8 +19,9 @@
 	
 	var files = new Array();
 	files["flash"] = "{file_flash}";
-	<f:for each="{files_html5}" as="movie" key="ext">
-		files["html5"]["{ext}"] = "movie";
+	files["html5"] = new Array();
+	<f:for each="{files_html5}" as="movie" key="fileExt">
+		files["html5"]["{fileExt}"] = "{movie}";
 	</f:for>
 	
 	var width = "{width}";
