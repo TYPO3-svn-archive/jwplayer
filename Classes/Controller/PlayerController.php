@@ -223,11 +223,12 @@ class Tx_Jwplayer_Controller_PlayerController extends Tx_Extbase_MVC_Controller_
 
 			foreach( $this->settings['moviesection'] as $item ) {
 			
+				$movie = $this->getMovieList( $item );
 				$playlist[] = array(
 					'title' => $item['movieitem']['title'],
 					'description' => $item['movieitem']['description'],
 					'duration' => ($item['movieitem']['duration']) ? $item['movieitem']['duration'] : 0,
-					'files' => $this->getMovieList( $item ),
+					'file' => ( $movie['flash'] ) ? $movie['flash'] : $movie['url'],
 					'image' => $this->getUploadPath( $item['movieitem']['image'] )
 				);
 			}
@@ -274,13 +275,14 @@ class Tx_Jwplayer_Controller_PlayerController extends Tx_Extbase_MVC_Controller_
 			'url' => ''
 		);
 		
-			// flash
-		$movieArray['flash'] = $this->solveMoviePath( $itemArray['movieitem']['file_flash'] );
-		
+			
 			// flashhtml5
 		$flashhtml5 = $this->solveMoviePath( $itemArray['movieitem']['file_flashhtml5'] );
 		$movieArray['flash'] = $flashhtml5;
 		$movieArray['html5'][ pathinfo( $flashhtml, PATHINFO_EXTENSION ) ] = $flashhtml5;
+	
+			// flash
+		$movieArray['flash'] = $this->solveMoviePath( $itemArray['movieitem']['file_flash'] );
 	
 			// html5
 		$ogv = $this->solveMoviePath( $itemArray['movieitem']['file_ogv'] );
@@ -288,6 +290,9 @@ class Tx_Jwplayer_Controller_PlayerController extends Tx_Extbase_MVC_Controller_
 		
 		$webm = $this->solveMoviePath( $itemArray['movieitem']['file_webm'] );
 		$movieArray['html5'][ pathinfo( $fwebm, PATHINFO_EXTENSION ) ] = $webm;
+		
+			// url
+		$movieArray['url'] = $this->solveMoviePath( $itemArray['movieitem']['url'], 'url' );
 	
 		if( empty( $movieArray['flash'] ) && empty( $movieArray['url'] ) ) {
 			return false;	
