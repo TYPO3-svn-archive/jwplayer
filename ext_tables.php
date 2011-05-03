@@ -1,21 +1,18 @@
 <?php
 if (!defined ('TYPO3_MODE')) die ('Access denied.');
+
 Tx_Extbase_Utility_Extension::registerPlugin(
 	$_EXTKEY,
 	'Pi1',
 	'JW Player'
 );
 
-t3lib_extMgm::addTypoScriptSetup('
-    tt_content.list.20.jwplayer_pi1.settings =< plugin.tx_jwplayer.settings
-	tt_content.jwplayer_pi1 < tt_content.list.20.jwplayer_pi1
-');
-
 
 t3lib_div::loadTCA('tt_content');
 
 $TCA['tt_content']['types']['list']['subtypes_excludelist']['jwplayer_pi1'] = 'layout,recursive,select_key,pages';
 $TCA['tt_content']['types']['list']['subtypes_addlist']['jwplayer_pi1'] = 'pi_flexform';
+t3lib_extMgm::addPlugin(array('LLL:EXT:jwplayer/locallang.xml:jwplayer.title', $_EXTKEY .'_pi1' ), 'list_type');
 t3lib_extMgm::addPiFlexFormValue( 'jwplayer_pi1', 'FILE:EXT:jwplayer/Configuration/FlexForms/Player.xml');
 
 t3lib_extMgm::addStaticFile($_EXTKEY, 'Configuration/TypoScript', 'JW Player JS Files');

@@ -227,7 +227,7 @@ class Tx_Jwplayer_Controller_PlayerController extends Tx_Extbase_MVC_Controller_
 					'title' => $item['movieitem']['title'],
 					'description' => $item['movieitem']['description'],
 					'duration' => ($item['movieitem']['duration']) ? $item['movieitem']['duration'] : 0,
-					'file' => $this->solveVideoPath( $item ),
+					'files' => $this->getMovieList( $item ),
 					'image' => $this->getUploadPath( $item['movieitem']['image'] )
 				);
 			}
@@ -236,19 +236,19 @@ class Tx_Jwplayer_Controller_PlayerController extends Tx_Extbase_MVC_Controller_
 
 		} else {
 		
-			$movieArray = array_shift( $this->settings['moviesection'] );
+			$itemArray = array_shift( $this->settings['moviesection'] );
 			
-			if( $filePath = $this->solveVideoPath( $movieArray ) ) {
+			if( $movieList = $this->getMovieList( $itemArray ) ) {
 			
-				$previewImagePath = $this->getUploadPath( $movieArray['movieitem']['image'] );
+				$previewImagePath = $this->getUploadPath( $itemArray['movieitem']['image'] );
 
-				$this->view->assign ( 'file', $filePath );
+				$this->view->assign ( 'files', $movieList );
 				$this->view->assign ( 'image', $previewImagePath );
 
 					// add movie specific meta tags for facebook	
 				if((boolean) $this->settings['add_metatags'] === TRUE) {
 
-					$title = empty($this->settings['metatag_title']) ? $movieArray['movieitem']['file'] : $this->settings['metatag_title'];
+					$title = empty($this->settings['metatag_title']) ? $itemArray['movieitem']['file'] : $this->settings['metatag_title'];
 					$GLOBALS['TSFE']->getPageRenderer()->addMetaTag( '<meta property="og:title" content="'.$title.'"/>' );
 
 					# TODO: Render image to 50x50 PX
@@ -260,19 +260,60 @@ class Tx_Jwplayer_Controller_PlayerController extends Tx_Extbase_MVC_Controller_
 		
 	}
 	
-	protected function solveVideoPath( $itemArray ) {
+	/**
+	 *	Generate a list with given movie formats
+	 *	@param	
+	 */	
+	protected function getMovieList( $itemArray ) {
 	
-		$videoPath = false;
+		$movieArray = array(
+			'flash' => '',
+			'html5' => array(),
+			'url' => ''
+		);
+		
+			// flash
+		$movieArray['flash'] = $this->solveMoviePath( $itemArray['movieitem']['file_flash'] );
+		
+			// flashhtml5
+		$flashhtml5 = $this->solveMoviePath( $itemArray['movieitem']['file_flashhtml5'] );
+		$movieArray['flash'] = $flashhtml5;
+		$movieArray['html5'][ pathinfo( $flashhtml, PATHINFO_EXTENSION ) ] = $flashhtml5;
 	
-		if( $itemArray['movieitem']['file'] ) {
+			// html5
+		$ogv = $this->solveMoviePath( $itemArray['movieitem']['file_ogv'] );
+		$movieArray['html5'][ pathinfo( $ogv, PATHINFO_EXTENSION ) ] = $ogv;
 		
-			$videoPath = self::UPLOAD_PATH . $itemArray['movieitem']['file'];
-		
-		} elseif( $this->checkUrl( $itemArray['movieitem']['url']  ) ) {
-			$videoPath = $itemArray['movieitem']['url'] = $itemArray['movieitem']['url']; 
+		$webm = $this->solveMoviePath( $itemArray['movieitem']['file_webm'] );
+		$movieArray['html5'][ pathinfo( $fwebm, PATHINFO_EXTENSION ) ] = $webm;
+	
+		if( empty( $movieArray['flash'] ) && empty( $movieArray['url'] ) ) {
+			return false;	
 		}
 		
-		return $videoPath;
+		return $movieArray;
+	}
+	
+	/**
+	 *	Create file path, by URL checks the syntax
+	 *	@param	string	$filename
+	 *	@param	string	$type
+	 *	@return	string
+	 */
+	protected function solveMoviePath( $filename, $type='file' ) {
+	
+		$filePath = '';
+	
+		switch( $type ) {
+			case 'file':
+				$filePath = self::UPLOAD_PATH . $filename;
+				break;
+			case 'url':
+				$filePath = ( $this->checkUrl( $filename ) ) ? $filename : '';
+				break;
+		}
+			
+		return $filePath;
 	}
 	
 	/**
