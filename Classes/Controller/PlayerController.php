@@ -289,7 +289,7 @@ class Tx_Jwplayer_Controller_PlayerController extends Tx_Extbase_MVC_Controller_
 		$movieArray['html5'][ pathinfo( $ogv, PATHINFO_EXTENSION ) ] = $ogv;
 		
 		$webm = $this->solveMoviePath( $itemArray['movieitem']['file_webm'] );
-		$movieArray['html5'][ pathinfo( $fwebm, PATHINFO_EXTENSION ) ] = $webm;
+		$movieArray['html5'][ pathinfo( $webm, PATHINFO_EXTENSION ) ] = $webm;
 		
 			// url
 		$movieArray['url'] = $this->solveMoviePath( $itemArray['movieitem']['url'], 'url' );

@@ -19,7 +19,10 @@
 	
 	var files = new Array();
 	files["flash"] = "{file_flash}";
-	//"{file}";
+	<f:for each="{files_html5}" as="movie" key="ext">
+		files["html5"]["{ext}"] = "movie";
+	</f:for>
+	
 	var width = "{width}";
 	var height = "{height}";
 	var bufferlength = "{bufferlength}";
