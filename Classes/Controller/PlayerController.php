@@ -238,7 +238,7 @@ class Tx_Jwplayer_Controller_PlayerController extends Tx_Extbase_MVC_Controller_
 		} else {
 		
 			$itemArray = array_shift( $this->settings['moviesection'] );
-			
+		
 			if( $movieList = $this->getMovieList( $itemArray ) ) {
 			
 				$previewImagePath = $this->getUploadPath( $itemArray['movieitem']['image'] );
@@ -282,8 +282,10 @@ class Tx_Jwplayer_Controller_PlayerController extends Tx_Extbase_MVC_Controller_
 		$movieArray['html5'][ pathinfo( $flashhtml5, PATHINFO_EXTENSION ) ] = $flashhtml5;
 	
 			// flash
-		$movieArray['flash'] = $this->solveMoviePath( $itemArray['movieitem']['file_flash'] );
-	
+		if( $itemArray['movieitem']['file_flash'] ) {
+			$movieArray['flash'] = $this->solveMoviePath( $itemArray['movieitem']['file_flash'] );
+		}
+
 			// html5
 		$ogv = $this->solveMoviePath( $itemArray['movieitem']['file_ogv'] );
 		$movieArray['html5'][ pathinfo( $ogv, PATHINFO_EXTENSION ) ] = $ogv;
