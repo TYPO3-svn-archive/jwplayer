@@ -46,7 +46,10 @@ class Tx_Jwplayer_Controller_PlayerController extends Tx_Extbase_MVC_Controller_
 	 * @return string
 	 */
 	public function indexAction() {
-		$this->addJavaScript();
+		
+		if( $this->getSetting('disableJsAutoInclude') != 1 ) {
+			$this->addJavaScript();
+		}
 		
 		$playerId = uniqid('player');
 		
