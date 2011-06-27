@@ -11,7 +11,8 @@ class Tx_Jwplayer_Controller_PlayerController extends Tx_Extbase_MVC_Controller_
 	
 	var $allowedSkinExtension = array(
 		'zip',
-		'swf'
+		'swf',
+		'xml'
 	);
 	
 	/**
@@ -104,7 +105,9 @@ class Tx_Jwplayer_Controller_PlayerController extends Tx_Extbase_MVC_Controller_
 		$skinFile = '';
 	
 		if( file_exists( PATH_site . $this->conf['skin'] ) && $this->checkSkinFileExtension( PATH_site . $this->conf['skin'] ) ) {
-			$skinFile = $this->conf['skin'];
+        	$skinFile = $this->conf['skin'];
+		} elseif( file_exists( PATH_site . $this->getSetting( 'skin' ) ) && $this->checkSkinFileExtension( PATH_site . $this->getSetting( 'skin' ) ) ) {
+			$skinFile = $this->getSetting( 'skin' );
 		} else {
 			$skinFile = $this->getUploadPath( $this->getSetting( 'skin' ) );
 		}
@@ -119,7 +122,7 @@ class Tx_Jwplayer_Controller_PlayerController extends Tx_Extbase_MVC_Controller_
 	 */
 	protected function checkSkinFileExtension( $file) {
 		
-		return in_array( pathinfo( PATH_site . $this->conf['skin'], PATHINFO_EXTENSION ) ,$this->allowedSkinExtension );
+		return in_array( pathinfo( PATH_site . $file, PATHINFO_EXTENSION ) ,$this->allowedSkinExtension );
 	}
 	
 	/**
