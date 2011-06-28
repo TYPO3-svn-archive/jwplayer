@@ -1,8 +1,12 @@
+{namespace jwplayer=Tx_Jwplayer_ViewHelpers}
+
+
+
 <div class="jwplayer">
 	<p id="{player_id}">Video is loading ...</p>
 </div>
 
-<script type="text/javascript">
+<jwplayer:script>
 	// define variables
 	var timeNow = new Date();
 	var player_id = "{player_id}"+timeNow.getTime();
@@ -117,7 +121,7 @@
 		jwplayer(player_id).setup(config);
 	}
 	 /* ]]> */
-</script>
+</jwplayer:script>
 <noscript>
 	Please enable JavaScript
 </noscript>
