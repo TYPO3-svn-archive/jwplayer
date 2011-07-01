@@ -38,7 +38,7 @@ class Tx_Jwplayer_Controller_PlayerController extends Tx_Extbase_MVC_Controller_
 	protected function initializeAction() {
 		$this->flashConfigGenerator = t3lib_div::makeInstance ( 'Tx_Jwplayer_FlashConfigGenerator' );
 		
-		$this->conf = unserialize ( $GLOBALS ['TYPO3_CONF_VARS'] ['EXT'] ['extConf'] ['jwplayer'] );
+		$this->conf = t3lib_div::makeInstance ( 'Tx_Jwplayer_Configuration_ExtensionManager' );
 	}
 
 
@@ -54,11 +54,11 @@ class Tx_Jwplayer_Controller_PlayerController extends Tx_Extbase_MVC_Controller_
 		$playerId = uniqid('player');
 		
 		$this->view->assign ( 'player_id', $playerId);
-		$this->view->assign ( 'flashplayer', $this->getPlayerPath());
-		$this->view->assign ( 'backcolor', $this->conf['backcolor'] );
-		$this->view->assign ( 'fontcolor', $this->conf['fontcolor'] );
-		$this->view->assign ( 'lightcolor', $this->conf['lightcolor'] );
-		$this->view->assign ( 'screencolor', $this->conf['screencolor'] );
+		$this->view->assign ( 'flashplayer', $this->conf->getPlayerPath());
+		$this->view->assign ( 'backcolor', $this->conf->getBackcolor() );
+		$this->view->assign ( 'fontcolor', $this->conf->getFontcolor() );
+		$this->view->assign ( 'lightcolor', $this->conf->getLightcolor() );
+		$this->view->assign ( 'screencolor', $this->conf->getScreenscolor() );
 		$this->view->assign ( 'width', $this->getPlayerWidth() );
 		$this->view->assign ( 'height', $this->getPlayerHeight() );
 		$this->view->assign ( 'autostart', $this->getSetting( 'autostart' ) );
@@ -72,6 +72,7 @@ class Tx_Jwplayer_Controller_PlayerController extends Tx_Extbase_MVC_Controller_
 		$this->view->assign ( 'playlist_position', $this->getPlaylistPosition() );
 		$this->view->assign ( 'playlist_size', $this->getSetting( 'playlistsize' ) );
 		$this->view->assign ( 'skin', $this->getSkin() );
+		$this->view->assign ( 'dontMoveJs', $this->getSetting( 'dontMoveJs' ) );
 		
 		$this->setPlaylist();
 
@@ -107,8 +108,8 @@ class Tx_Jwplayer_Controller_PlayerController extends Tx_Extbase_MVC_Controller_
 	
 		$skinFile = '';
 	
-		if( file_exists( PATH_site . $this->conf['skin'] ) && $this->checkSkinFileExtension( PATH_site . $this->conf['skin'] ) ) {
-        	$skinFile = $this->conf['skin'];
+		if( file_exists( PATH_site . $this->conf->getSkin() ) && $this->checkSkinFileExtension( PATH_site . $this->conf->getSkin() ) ) {
+        	$skinFile = $this->conf->getSkin();
 		} elseif( file_exists( PATH_site . $this->getSetting( 'skin' ) ) && $this->checkSkinFileExtension( PATH_site . $this->getSetting( 'skin' ) ) ) {
 			$skinFile = $this->getSetting( 'skin' );
 		} else {
@@ -196,16 +197,16 @@ class Tx_Jwplayer_Controller_PlayerController extends Tx_Extbase_MVC_Controller_
 	 */
 	public function showVideoAction($flash_player_config) {
 		$typo3SiteUrl = t3lib_div::getIndpEnv('TYPO3_SITE_URL');
-		$flashPlayerUrl = $this->removeLastChar($typo3SiteUrl) . $this->getPlayerPath() . '?';
+		$flashPlayerUrl = $this->removeLastChar($typo3SiteUrl) . $this->conf->getPlayerPath() . '?';
 		$flashPlayerUrl .= $this->flashConfigGenerator->decode($flash_player_config);
 		// add flashPlayerConfig to URL, which depends on this plugin
 		$flashPlayerConfig = array();
 		$flashPlayerConfig['netstreambasepath'] = $typo3SiteUrl;
 		$flashPlayerConfig['id'] = uniqid('player');
-		$flashPlayerConfig['backcolor'] = $this->conf['backcolor'];
-		$flashPlayerConfig['fontcolor'] = $this->conf['fontcolor'];
-		$flashPlayerConfig['lightcolor'] = $this->conf['lightcolor'];
-		$flashPlayerConfig['screencolor'] = $this->conf['screencolor'];
+		$flashPlayerConfig['backcolor'] = $this->conf->getBackcolor();
+		$flashPlayerConfig['fontcolor'] = $this->conf->getFontcolor();
+		$flashPlayerConfig['lightcolor'] = $this->conf->getLightcolor();
+		$flashPlayerConfig['screencolor'] = $this->conf->getScreenscolor();
 		foreach($flashPlayerConfig as $key => $val) {
 			$flashPlayerUrl .= $key.'='.$val.'&';
 		}
@@ -387,20 +388,6 @@ class Tx_Jwplayer_Controller_PlayerController extends Tx_Extbase_MVC_Controller_
 			$path = self::UPLOAD_PATH . $filename;
 		}
 		return $path;
-	}
-	/**
-	 * @return string
-	 */
-	private function getPlayerPath() {
-		if(!empty($this->conf['path_licensed_player'])){
-			$path_player = $this->conf['path_licensed_player'];
-		} else {
-			$uri = 'EXT:jwplayer/Resources/Public/Player/player.swf';
-			$uri = t3lib_div::getFileAbsFileName($uri);
-			$uri = substr($uri, strlen(PATH_site));
-			$path_player = '/'.$uri;
-		}
-		return $path_player;
 	}
 	/**
 	 * @param string $string
