@@ -207,6 +207,19 @@ class Tx_Jwplayer_Controller_PlayerController extends Tx_Extbase_MVC_Controller_
 		$flashPlayerConfig['fontcolor'] = $this->conf->getFontcolor();
 		$flashPlayerConfig['lightcolor'] = $this->conf->getLightcolor();
 		$flashPlayerConfig['screencolor'] = $this->conf->getScreenscolor();
+		
+		$skinFile = $this->getSkin();
+		if($skinFile != '' ) {
+			if(substr(0,1,$skinFile) != '/') {
+				$baseUrl = $typo3SiteUrl;
+			}else {
+				$baseUrl = $this->removeLastChar($typo3SiteUrl);
+			}
+			
+			$skinUrl 					= $baseUrl.$skinFile;
+			$flashPlayerConfig['skin'] 	= $skinUrl;
+		}
+		
 		foreach($flashPlayerConfig as $key => $val) {
 			$flashPlayerUrl .= $key.'='.$val.'&';
 		}
