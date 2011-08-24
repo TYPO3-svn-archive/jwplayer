@@ -7,119 +7,128 @@
 </div>
 
 <jwplayer:script>
-	// define variables
-	var timeNow = new Date();
-	var player_id = "{player_id}"+timeNow.getTime();
-
-	// change player-id dynamicly via JS, that's important if we load instances of jwplayer via AJAX-requests!
-	document.getElementById("{player_id}").id=player_id;
-
-	var flashplayer = "{flashplayer}";
-	var backcolor = "{backcolor}";
-	var fontcolor = "{fontcolor}";
-	var lightcolor = "{lightcolor}";
-	var screencolor = "{screencolor}";
-	var controlbar = "{controlbar}";
 	
-	var files = new Array();
-	files["flash"] = "{file_flash}";
-	files["html5"] = new Array();
-	<f:for each="{files_html5}" as="movie" key="fileExt">
-	files["html5"]["{fileExt}"] = "{movie}";
-	</f:for>
+	jQuery.noConflict();
+	(function($) { 
+		$(function() {
+
 	
-	var width = "{width}";
-	var height = "{height}";
-	var bufferlength = "{bufferlength}";
-	var volume = "{volume}";
-	var autostart = ("{autostart}" == "1")?true:false;
-	var mute = ("{mute}" == "1")?true:false;
-	var stretching = "{stretching}";
-	var repeat = "{repeat}";
-	var image = "{image}";
-	var skin = "{skin}";
-	var facebookPlugin = ("{facebookPlugin}" == "1")?true:false;
-	var playlistposition = "{playlist_position}";
-	var playlistsize = {playlist_size};
-	var playlist = [
-	<f:for each="{playlistItems}" as="item" iteration="counter"><f:if condition='{counter.isLast}'><f:then>
-	<f:escape>{</f:escape>title: '{item.title}', description: '{item.description}', <f:if condition="{item.duration} > 0"><f:then>duration:{item.duration},</f:then></f:if> file:'{item.file}', image: '{item.image}'<f:escape>}</f:escape>
-	</f:then><f:else>
-	<f:escape>{</f:escape>title: '{item.title}', description: '{item.description}', <f:if condition="{item.duration} > 0"><f:then>duration:{item.duration},</f:then></f:if> file:'{item.file}', image: '{item.image}'<f:escape>}</f:escape>,
-	</f:else></f:if></f:for>
-	];
-	/* <![CDATA[ */
-	var config = {
-		id: player_id,
-		file: files["flash"],
-		html5: files["html5"],
-		width: width,
-		height: height,
-		bufferlength:bufferlength,
-		autostart:autostart,
-		controlbar:controlbar,
-		mute:mute,
-		events: {
-			onPlay: function(e) { 
-				tx_jwplayer.clickTracking(this);
+			// define variables
+			var timeNow = new Date();
+			var player_id = "{player_id}"+timeNow.getTime();
+		
+			// change player-id dynamicly via JS, that's important if we load instances of jwplayer via AJAX-requests!
+			document.getElementById("{player_id}").id=player_id;
+		
+			var flashplayer = "{flashplayer}";
+			var backcolor = "{backcolor}";
+			var fontcolor = "{fontcolor}";
+			var lightcolor = "{lightcolor}";
+			var screencolor = "{screencolor}";
+			var controlbar = "{controlbar}";
+			
+			var files = new Array();
+			files["flash"] = "{file_flash}";
+			files["html5"] = new Array();
+			<f:for each="{files_html5}" as="movie" key="fileExt">
+			files["html5"]["{fileExt}"] = "{movie}";
+			</f:for>
+			
+			var width = "{width}";
+			var height = "{height}";
+			var bufferlength = "{bufferlength}";
+			var volume = "{volume}";
+			var autostart = ("{autostart}" == "1")?true:false;
+			var mute = ("{mute}" == "1")?true:false;
+			var stretching = "{stretching}";
+			var repeat = "{repeat}";
+			var image = "{image}";
+			var skin = "{skin}";
+			var facebookPlugin = ("{facebookPlugin}" == "1")?true:false;
+			var playlistposition = "{playlist_position}";
+			var playlistsize = {playlist_size};
+			var playlist = [
+			<f:for each="{playlistItems}" as="item" iteration="counter"><f:if condition='{counter.isLast}'><f:then>
+			<f:escape>{</f:escape>title: '{item.title}', description: '{item.description}', <f:if condition="{item.duration} > 0"><f:then>duration:{item.duration},</f:then></f:if> file:'{item.file}', image: '{item.image}'<f:escape>}</f:escape>
+			</f:then><f:else>
+			<f:escape>{</f:escape>title: '{item.title}', description: '{item.description}', <f:if condition="{item.duration} > 0"><f:then>duration:{item.duration},</f:then></f:if> file:'{item.file}', image: '{item.image}'<f:escape>}</f:escape>,
+			</f:else></f:if></f:for>
+			];
+			/* <![CDATA[ */
+			var config = {
+				id: player_id,
+				file: files["flash"],
+				html5: files["html5"],
+				width: width,
+				height: height,
+				bufferlength:bufferlength,
+				autostart:autostart,
+				controlbar:controlbar,
+				mute:mute,
+				events: {
+					onPlay: function(e) { 
+						tx_jwplayer.clickTracking(this);
+					}
+				},
+				volume:volume,
+				modes: [
+					{
+						type: 'flash',
+						src: flashplayer
+					},
+					{
+						type: 'html5',
+						config: {
+							'file': '',
+							'provider': 'video'
+						}
+					}
+				],
+				"playlist.position": playlistposition,
+				"playlist.size": playlistsize
+			};
+			if( playlistposition != 'none' ) {
+				config.playlist = playlist;
 			}
-		},
-		volume:volume,
-		modes: [
-			{
-				type: 'flash',
-				src: flashplayer
-			},
-			{
-				type: 'html5',
-				config: {
-					'file': '',
-					'provider': 'video'
+			if(image != "") {
+				config.image = image;
+			}
+			
+			if(repeat != "none"){
+				config.repeat = repeat;
+			}
+			if(stretching != "uniform"){
+				config.stretching = stretching;
+			}
+			if(facebookPlugin){
+				var plugins = {};
+				plugins.fbit = {
+					dock:true
+				};
+				config.plugins = plugins;
+			}
+			
+			if(skin) {
+				config.skin = skin;	
+			} else {
+				config.backcolor = backcolor;
+				config.fontcolor = fontcolor;
+				config.lightcolor = lightcolor;
+				config.screencolor = screencolor;
+			}
+		
+			// init player
+			if (typeof jwplayer != 'function') {
+				if(typeof(tx_jwplayer_list)=="undefined"){
+					tx_jwplayer_list = new Array();
 				}
+				tx_jwplayer_list[player_id] = config;
+			}else{
+				jwplayer(player_id).setup(config);
 			}
-		],
-		"playlist.position": playlistposition,
-		"playlist.size": playlistsize
-	};
-	if( playlistposition != 'none' ) {
-		config.playlist = playlist;
-	}
-	if(image != "") {
-		config.image = image;
-	}
 	
-	if(repeat != "none"){
-		config.repeat = repeat;
-	}
-	if(stretching != "uniform"){
-		config.stretching = stretching;
-	}
-	if(facebookPlugin){
-		var plugins = {};
-		plugins.fbit = {
-			dock:true
-		};
-		config.plugins = plugins;
-	}
-	
-	if(skin) {
-		config.skin = skin;	
-	} else {
-		config.backcolor = backcolor;
-		config.fontcolor = fontcolor;
-		config.lightcolor = lightcolor;
-		config.screencolor = screencolor;
-	}
-
-	// init player
-	if (typeof jwplayer != 'function') {
-		if(typeof(tx_jwplayer_list)=="undefined"){
-			tx_jwplayer_list = new Array();
-		}
-		tx_jwplayer_list[player_id] = config;
-	}else{
-		jwplayer(player_id).setup(config);
-	}
+		  });
+	})(jQuery);
 	 /* ]]> */
 </jwplayer:script>
 <noscript>
