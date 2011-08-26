@@ -36,6 +36,7 @@ class Tx_Jwplayer_Controller_AjaxPlayerController extends Tx_Extbase_MVC_Control
 	 * @return void
 	 */
 	protected function initializeAction() {
+		$GLOBALS['TSFE']->includeTCA(); 
 		$this->flashConfigGenerator = t3lib_div::makeInstance ( 'Tx_Jwplayer_FlashConfigGenerator' );
 		
 		$this->conf = t3lib_div::makeInstance ( 'Tx_Jwplayer_Configuration_ExtensionManager' );
@@ -46,7 +47,7 @@ class Tx_Jwplayer_Controller_AjaxPlayerController extends Tx_Extbase_MVC_Control
 	 * @return string
 	 */
 	public function indexAction() {
-	
+			
 		$recordUid = intval( t3lib_div::_GP('uid') );
 		$recordTable = mysql_real_escape_string( t3lib_div::_GP('table') );
 		$recordField = mysql_real_escape_string( t3lib_div::_GP('field') );
@@ -57,6 +58,7 @@ class Tx_Jwplayer_Controller_AjaxPlayerController extends Tx_Extbase_MVC_Control
             $data = $GLOBALS['TYPO3_DB']->sql_fetch_assoc( $res );
 
             if( $data[$recordField] ) {
+
             	$this->view->assign ( 'file_flash', $GLOBALS['TCA']['tt_news']['columns'][$recordField]['config']['uploadfolder'] . $data[$recordField] );
 	    	}
 	    	
