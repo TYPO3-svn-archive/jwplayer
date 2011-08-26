@@ -47,20 +47,23 @@ class Tx_Jwplayer_Controller_AjaxPlayerController extends Tx_Extbase_MVC_Control
 	 */
 	public function indexAction() {
 	
-		if( intval( t3lib_div::_GP('news') ) )  {
-                	$res = $GLOBALS['TYPO3_DB']->exec_SELECTquery('tx_jwplayerttnews_movie, tx_jwplayerttnews_previewimage', 'tt_news', 'uid ='. t3lib_div::_GP('news') );
-                	$data = $GLOBALS['TYPO3_DB']->sql_fetch_assoc( $res );
+		$recordUid = intval( t3lib_div::_GP('uid') );
+		$recordTable = mysql_real_escape_string( t3lib_div::_GP('table') );
+	
+		if( $recordUid && $recordTable )  {
+        
+        	$res = $GLOBALS['TYPO3_DB']->exec_SELECTquery('tx_jwplayerttnews_movie, tx_jwplayerttnews_previewimage', $recordTable, 'uid ='. $recordUid );
+            $data = $GLOBALS['TYPO3_DB']->sql_fetch_assoc( $res );
 
-                	if( $data ) {
-                        	$this->view->assign ( 'file_flash', '/uploads/jwplayerttnews/' . $data['tx_jwplayerttnews_movie'] );
-
-                	}
+            if( $data['tx_jwplayerttnews_movie'] ) {
+            	$this->view->assign ( 'file_flash', '/uploads/jwplayerttnews/' . $data['tx_jwplayerttnews_movie'] );
+	    	}
+	    	
+	    	$this->view->assign ( 'flashplayer', $this->conf->getPlayerPath());
+			$this->view->assign ( 'autostart', $this->getSetting( 'autostart' ) );
+			$this->view->assign ( 'skin', $this->getSkin() );
 		}
 		
-		
-		$this->view->assign ( 'flashplayer', $this->conf->getPlayerPath());
-		$this->view->assign ( 'autostart', $this->getSetting( 'autostart' ) );
-		$this->view->assign ( 'skin', $this->getSkin() );
 		
 	}
 	
