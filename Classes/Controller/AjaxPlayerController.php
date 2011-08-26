@@ -57,7 +57,7 @@ class Tx_Jwplayer_Controller_AjaxPlayerController extends Tx_Extbase_MVC_Control
             $data = $GLOBALS['TYPO3_DB']->sql_fetch_assoc( $res );
 
             if( $data[$recordField] ) {
-            	$this->view->assign ( 'file_flash', $TCA['tt_news']['columns'][$recordField]['config']['uploadfolder'] . $data[$recordField] );
+            	$this->view->assign ( 'file_flash', $GLOBALS['TCA']['tt_news']['columns'][$recordField]['config']['uploadfolder'] . $data[$recordField] );
 	    	}
 	    	
 	    	$this->view->assign ( 'flashplayer', $this->conf->getPlayerPath());
