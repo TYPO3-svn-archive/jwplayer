@@ -49,14 +49,15 @@ class Tx_Jwplayer_Controller_AjaxPlayerController extends Tx_Extbase_MVC_Control
 	
 		$recordUid = intval( t3lib_div::_GP('uid') );
 		$recordTable = mysql_real_escape_string( t3lib_div::_GP('table') );
+		$recordField = mysql_real_escape_string( t3lib_div::_GP('field') );
 	
 		if( $recordUid && $recordTable )  {
         
-        	$res = $GLOBALS['TYPO3_DB']->exec_SELECTquery('tx_jwplayerttnews_movie, tx_jwplayerttnews_previewimage', $recordTable, 'uid ='. $recordUid );
+        	$res = $GLOBALS['TYPO3_DB']->exec_SELECTquery( $recordField, $recordTable, 'uid ='. $recordUid );
             $data = $GLOBALS['TYPO3_DB']->sql_fetch_assoc( $res );
 
-            if( $data['tx_jwplayerttnews_movie'] ) {
-            	$this->view->assign ( 'file_flash', '/uploads/jwplayerttnews/' . $data['tx_jwplayerttnews_movie'] );
+            if( $data[$recordField] ) {
+            	$this->view->assign ( 'file_flash', $TCA['tt_news']['columns'][$recordField]['config']['uploadfolder'] . $data[$recordField] );
 	    	}
 	    	
 	    	$this->view->assign ( 'flashplayer', $this->conf->getPlayerPath());
