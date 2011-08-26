@@ -46,7 +46,7 @@ class Tx_Jwplayer_Controller_PlayerController extends Tx_Extbase_MVC_Controller_
 	 * @return string
 	 */
 	public function indexAction() {
-		
+
 		if( $this->getSetting('disableJsAutoInclude') != 1 ) {
 			$this->addJavaScript();
 		}
@@ -373,7 +373,7 @@ class Tx_Jwplayer_Controller_PlayerController extends Tx_Extbase_MVC_Controller_
 		$file = $extPath . 'Resources/Public/Player/jwplayer.js';
 		$GLOBALS ['TSFE']->getPageRenderer ()->addJsFooterFile( $file);
 		$file = $extPath . 'Resources/Public/Js/tx_jw_player.js';
-		$GLOBALS ['TSFE']->getPageRenderer ()->addJsFooterFile( $file );		
+		$GLOBALS ['TSFE']->getPageRenderer ()->addJsFooterFile( $file );	
 	}
 	/**
 	 * create URL to action 'showVideo'

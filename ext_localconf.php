@@ -12,6 +12,17 @@
 		)
 	);
 	
+	Tx_Extbase_Utility_Extension::configurePlugin(
+                $_EXTKEY,
+                'Pi2',
+                array(
+                        'AjaxPlayer' => 'index,showVideo',
+                ),
+                array(
+                        'AjaxPlayer' => 'showVideo',
+                )
+        );
+
 	
 	Tx_Extbase_Utility_Extension::configurePlugin(
 		$_EXTKEY,
