@@ -11,7 +11,11 @@ var tx_jwplayer = {
 						'provider': 'video'
 					};	
 				}
-				jwplayer(playerId).setup(config);
+				
+					// check if element exists
+				if( document.getElementById( playerId ) ) {
+                	jwplayer(playerId).setup(config);
+           		}
 			}
 		}
 	},
@@ -43,7 +47,7 @@ var tx_jwplayer = {
 		var supported = tx_jwplayer.checkSupportedFormats();
 		var i = 0;
 		
-		while( i < supported.length ) {
+		while( typeof( fileList ) != "undefined" && i < supported.length ) {
 			
 			if( typeof( fileList[ supported[i] ] ) != 'undefined' && fileList[ supported[i] ] !='' ) {
 				return fileList[ supported[i] ];
