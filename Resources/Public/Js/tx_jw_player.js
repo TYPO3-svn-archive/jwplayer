@@ -6,7 +6,7 @@ var tx_jwplayer = {
 				
 				if( html5File = tx_jwplayer.chooseHtml5Format( config.html5 ) ) {
 				
-					config.modes[1]['config'] = {
+					config.modes[0]['config'] = {
 						'file': html5File,
 						'provider': 'video'
 					};	
@@ -56,10 +56,8 @@ var tx_jwplayer = {
 	}
 }
 
-if(typeof jQuery != 'function'){
-	$(function(){
+(function($) { 
+	$(function() {
 		tx_jwplayer.init();
 	});
-}else{
-	tx_jwplayer.init();
-}
+})(jQuery)
