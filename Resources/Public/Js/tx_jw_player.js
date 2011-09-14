@@ -56,6 +56,9 @@ var tx_jwplayer = {
 	}
 }
 
+
+	// initialize players
+jQuery.noConflict();
 (function($) { 
 	$(function() {
 		tx_jwplayer.init();
