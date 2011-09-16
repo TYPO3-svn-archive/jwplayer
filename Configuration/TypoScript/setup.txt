@@ -2,7 +2,7 @@ page{
 	includeJSlibs {
 		jwplayer = EXT:jwplayer/Resources/Public/Player/jwplayer.js
 		jwplayer{
-			forceOnTop = 1
+			#forceOnTop = 1
 			compress= 1
 		}
 		tx_jw_player = EXT:jwplayer/Resources/Public/Js/tx_jw_player.js

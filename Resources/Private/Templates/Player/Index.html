@@ -6,7 +6,11 @@
 	<p id="{player_id}">Video is loading ...</p>
 </div>
 
-<jwplayer:script>
+<f:if condition="{usePageRenderer} == 0"><f:then>
+	<script>
+</f:then></f:if>
+
+<jwplayer:script pageRenderer="{usePageRenderer}">
 	
 	
 	// define variables
@@ -123,6 +127,11 @@
 		 ;
 	 /* ]]> */
 </jwplayer:script>
+
+<f:if condition="{usePageRenderer} == 0"><f:then>
+        </script>
+</f:then></f:if>
+
 <noscript>
 	Please enable JavaScript
 </noscript>

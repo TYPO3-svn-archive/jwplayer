@@ -36,12 +36,16 @@ class Tx_Jwplayer_ViewHelpers_ScriptViewHelper extends Tx_Fluid_Core_ViewHelper_
      * @param bool $forceOnTop
      * @return void
      */
-	public function render($inline=TRUE, $compress=FALSE, $forceOnTop=FALSE) {
-        $content = $this->renderChildren();
-        /** @var $pagerender t3lib_pagerenderer */
-        $pagerender = $GLOBALS['TSFE']->getPageRenderer();
-        $pagerender->addJsInlineCode(md5($content), $content, $compress, $forceOnTop);
-
+	public function render($inline=TRUE, $compress=FALSE, $forceOnTop=FALSE, $pageRenderer=TRUE) {
+        	$content = $this->renderChildren();
+        	/** @var $pagerender t3lib_pagerenderer */
+	
+		if ( $pageRenderer == true ) {
+        		$pagerender = $GLOBALS['TSFE']->getPageRenderer();
+        		$pagerender->addJsInlineCode(md5($content), $content, $compress, $forceOnTop);
+		} else {
+			return $content;
+		}
 	}
 }
 ?>

@@ -47,8 +47,12 @@ class Tx_Jwplayer_Controller_PlayerController extends Tx_Extbase_MVC_Controller_
 	 */
 	public function indexAction() {
 
+		
 		if( $this->getSetting('disableJsAutoInclude') != 1 ) {
 			$this->addJavaScript();
+			$this->view->assign ( 'usePageRenderer', true);
+		} else {
+			$this->view->assign ( 'usePageRenderer', false);
 		}
 		
 		$playerId = uniqid('player');
@@ -72,7 +76,6 @@ class Tx_Jwplayer_Controller_PlayerController extends Tx_Extbase_MVC_Controller_
 		$this->view->assign ( 'playlist_position', $this->getPlaylistPosition() );
 		$this->view->assign ( 'playlist_size', $this->getSetting( 'playlistsize' ) );
 		$this->view->assign ( 'skin', $this->getSkin() );
-		$this->view->assign ( 'dontMoveJs', $this->getSetting( 'dontMoveJs' ) );
 		
 		$this->setPlaylist();
 
