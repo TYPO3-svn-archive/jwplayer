@@ -67,4 +67,4 @@ jQuery.noConflict();
 	$(function() {
 		tx_jwplayer.init();
 	});
-})(jQuery)
+})(jQuery);
