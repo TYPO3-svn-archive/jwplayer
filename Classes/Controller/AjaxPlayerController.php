@@ -54,8 +54,14 @@ class Tx_Jwplayer_Controller_AjaxPlayerController extends Tx_Extbase_MVC_Control
 	
 		if( $recordUid && $recordTable )  {
         
-        	$res = $GLOBALS['TYPO3_DB']->exec_SELECTquery( $recordField, $recordTable, 'uid ='. $recordUid );
-            $data = $GLOBALS['TYPO3_DB']->sql_fetch_assoc( $res );
+            if ($GLOBALS['TCA'][$recordTable]['columns'][$recordField]['config']['allowed'] == 'tx_dam') {
+                // support dam fields
+                $data[$recordField] = $this->getDamUploadPath($recordField, $recordUid, $recordTable);
+            } else {
+				// "normal" fields containing the path
+                $res = $GLOBALS['TYPO3_DB']->exec_SELECTquery( $recordField, $recordTable, 'uid ='. $recordUid );
+                $data = $GLOBALS['TYPO3_DB']->sql_fetch_assoc( $res );
+            }
 
             if( $data[$recordField] ) {
 
@@ -69,8 +75,24 @@ class Tx_Jwplayer_Controller_AjaxPlayerController extends Tx_Extbase_MVC_Control
 		
 		
 	}
-	
-	
+
+    /**
+     * @param   string  $type   DAM name for image type ( name in tx_dam_mm_ref, field ident )
+     * @param   string  $uid    element uid
+     * @param   string  $table  table name where element comes from
+     * @return  string
+     */
+    private function getDamUploadPath( $type, $uid, $table ) {
+        $path = '';
+        $db = $GLOBALS['TYPO3_DB'];
+        $res = $db->sql_query('SELECT td.file_path, td.file_name FROM tx_dam td JOIN tx_dam_mm_ref tdmr ON td.uid = tdmr.uid_local WHERE tdmr.tablenames='.$db->fullQuoteStr($table, 'tx_dam_mm_ref').' AND tdmr.ident='.$db->fulLQuoteStr($type, 'tx_dam_mm_ref').' AND tdmr.uid_foreign='.$db->fullQuoteStr($uid, 'tx_dam_mm_ref'));
+        if ($res && $db->sql_num_rows($res)) {
+            $data = $db->sql_fetch_assoc($res);
+            $path = $data['file_path'].$data['file_name'];
+        }
+        return $path;
+    }
+
 	/**
 	 *	Return setting, selected by name
 	 *	@parameter	string	$name
