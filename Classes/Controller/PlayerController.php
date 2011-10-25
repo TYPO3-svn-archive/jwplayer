@@ -259,29 +259,31 @@ class Tx_Jwplayer_Controller_PlayerController extends Tx_Extbase_MVC_Controller_
 			$this->view->assign( 'playlistItems', $playlist );
 
 		} else {
-		
-			$itemArray = array_shift( $this->settings['moviesection'] );
-		
-			if( $movieList = $this->getMovieList( $itemArray ) ) {
+			if(is_array($this->settings['moviesection'])){
+				$itemArray = array_shift( $this->settings['moviesection'] );
 			
-				$previewImagePath = $this->getUploadPath( $itemArray['movieitem']['image'] );
-
-				$this->view->assign ( 'file_flash', ( !empty( $movieList['flash'] ) ) ? $movieList['flash'] : $movieList['url'] );
-				$this->view->assign ( 'files_html5', $movieList['html5'] );
+				if( $movieList = $this->getMovieList( $itemArray ) ) {
 				
-				$this->view->assign ( 'image', $previewImagePath );
-
-					// add movie specific meta tags for facebook	
-				if((boolean) $this->settings['add_metatags'] === TRUE) {
-
-					$title = empty($this->settings['metatag_title']) ? $itemArray['movieitem']['file'] : $this->settings['metatag_title'];
-					$GLOBALS['TSFE']->getPageRenderer()->addMetaTag( '<meta property="og:title" content="'.$title.'"/>' );
-
-					# TODO: Render image to 50x50 PX
-					$imgPath = $this->removeLastChar( t3lib_div::getIndpEnv('TYPO3_SITE_URL') ) . $previewImagePath ;
-					$GLOBALS['TSFE']->getPageRenderer()->addMetaTag( '<meta property="og:image" content="'.$imgPath.'">' );
+					$previewImagePath = $this->getUploadPath( $itemArray['movieitem']['image'] );
+	
+					$this->view->assign ( 'file_flash', ( !empty( $movieList['flash'] ) ) ? $movieList['flash'] : $movieList['url'] );
+					$this->view->assign ( 'files_html5', $movieList['html5'] );
+					
+					$this->view->assign ( 'image', $previewImagePath );
+	
+						// add movie specific meta tags for facebook	
+					if((boolean) $this->settings['add_metatags'] === TRUE) {
+	
+						$title = empty($this->settings['metatag_title']) ? $itemArray['movieitem']['file'] : $this->settings['metatag_title'];
+						$GLOBALS['TSFE']->getPageRenderer()->addMetaTag( '<meta property="og:title" content="'.$title.'"/>' );
+	
+						# TODO: Render image to 50x50 PX
+						$imgPath = $this->removeLastChar( t3lib_div::getIndpEnv('TYPO3_SITE_URL') ) . $previewImagePath ;
+						$GLOBALS['TSFE']->getPageRenderer()->addMetaTag( '<meta property="og:image" content="'.$imgPath.'">' );
+					}
 				}
 			}
+			
 		}	
 		
 	}
