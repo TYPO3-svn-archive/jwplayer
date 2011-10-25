@@ -400,7 +400,7 @@ class Tx_Jwplayer_Controller_PlayerController extends Tx_Extbase_MVC_Controller_
 	 * @param	string	$filename
 	 * @return 	string
 	 */
-	private function getUploadPath( $filename ) {
+	private function getUploadPath( $filename  = NULL) {
 		$path = '';
 		if( $filename ){
 			$path = self::UPLOAD_PATH . $filename;
