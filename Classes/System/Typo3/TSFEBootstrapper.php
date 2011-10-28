@@ -56,6 +56,25 @@ class tx_Jwplayer_System_Typo3_TSFEBootstrapper {
         }
         
         /**
+         * Returns the typoscript configuration path that should be used for eid scripts.
+         * If you want to extends aoe_solr in your own extension, you may need to
+         * return a diffrent path with a diffent namespace.
+         *
+         * @return string
+         */
+        public function getTypoScriptConfigurationPath() {
+                $configurationKey = '< plugin.tx_jwplayer.settings';
+
+                if (is_array($GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['jwplayer/Classes/TSFEBootstrapper.php']['getTypoScriptConfigurationPath'])) {
+                        foreach($GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['jwplayer/Classes/TSFEBootstrapper.php']['getTypoScriptConfigurationPath'] as $_funcRef) {
+                                $configurationKey = t3lib_div::callUserFunction($_funcRef, $configurationKey);
+                        }
+                }
+
+                return $configurationKey;
+        }
+        
+        /**
          * Returns the extension name, used to bootstrap eid calls.
          *
          * @return string
