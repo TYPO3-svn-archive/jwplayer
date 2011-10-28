@@ -36,4 +36,6 @@
 		'CType'
 	);
 
+
+	$TYPO3_CONF_VARS['FE']['eID_include']['tx_jwplayer_ajax'] = 'EXT:jwplayer/Resources/Private/Eid/ajax.php';
 ?>
