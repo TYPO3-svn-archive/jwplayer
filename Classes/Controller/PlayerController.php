@@ -81,7 +81,7 @@ class Tx_Jwplayer_Controller_PlayerController extends Tx_Extbase_MVC_Controller_
 
 		if((boolean) $this->settings['add_metatags'] === TRUE) {
 			// create metaTags
-			$GLOBALS['TSFE']->getPageRenderer()->addMetaTag( '<meta property="og:description" content="'.$this->settings['metatag_description'].'"/>' );
+			$GLOBALS['TSFE']->getPageRenderer()->addMetaTag( '<meta property="og:description" content="'.htmlspecialchars($this->settings['metatag_description']).'"/>' );
 			$GLOBALS['TSFE']->getPageRenderer()->addMetaTag( '<meta property="og:type" content="video"/>' );
 			$GLOBALS['TSFE']->getPageRenderer()->addMetaTag( '<meta name="medium" content="video"/>' );
 			$GLOBALS['TSFE']->getPageRenderer()->addMetaTag( '<meta property="og:video" content="'.$this->createVideoUrl().'"/>' );
@@ -275,7 +275,7 @@ class Tx_Jwplayer_Controller_PlayerController extends Tx_Extbase_MVC_Controller_
 					if((boolean) $this->settings['add_metatags'] === TRUE) {
 	
 						$title = empty($this->settings['metatag_title']) ? $itemArray['movieitem']['file'] : $this->settings['metatag_title'];
-						$GLOBALS['TSFE']->getPageRenderer()->addMetaTag( '<meta property="og:title" content="'.$title.'"/>' );
+						$GLOBALS['TSFE']->getPageRenderer()->addMetaTag( '<meta property="og:title" content="'.htmlspecialchars($title).'"/>' );
 	
 						# TODO: Render image to 50x50 PX
 						$imgPath = $this->removeLastChar( t3lib_div::getIndpEnv('TYPO3_SITE_URL') ) . $previewImagePath ;
