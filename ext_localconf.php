@@ -36,6 +36,15 @@
 		'CType'
 	);
 
+	t3lib_extMgm::addTypoScript(
+		$_EXTKEY, 
+		'setup', 
+		'plugin.tx_jwplayer.settings.ajaxPlayer {
+			table = tt_news
+			field = tx_jwplayerttnews_movie
+		}'
+	);
+
 
 	$TYPO3_CONF_VARS['FE']['eID_include']['tx_jwplayer_ajax'] = 'EXT:jwplayer/Resources/Private/Eid/ajax.php';
 ?>

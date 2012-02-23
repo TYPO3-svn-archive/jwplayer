@@ -49,10 +49,10 @@ class Tx_Jwplayer_Controller_AjaxPlayerController extends Tx_Extbase_MVC_Control
 	public function indexAction() {
 			
 		$recordUid = intval( t3lib_div::_GP('uid') );
-		$recordTable = mysql_real_escape_string( t3lib_div::_GP('table') );
-		$recordField = mysql_real_escape_string( t3lib_div::_GP('field') );
+		$recordTable = $this->getAjaxSetting('table');
+		$recordField = $this->getAjaxSetting('field');
 	
-		if( $recordUid && $recordTable )  {
+		if( $recordUid && $recordTable && $recordField )  {
         
             if ($GLOBALS['TCA'][$recordTable]['columns'][$recordField]['config']['allowed'] == 'tx_dam') {
                 // support dam fields
@@ -65,7 +65,7 @@ class Tx_Jwplayer_Controller_AjaxPlayerController extends Tx_Extbase_MVC_Control
 
             if( $data[$recordField] ) {
 
-            	$this->view->assign ( 'file_flash', '/' . $GLOBALS['TCA']['tt_news']['columns'][$recordField]['config']['uploadfolder'] . $data[$recordField] );
+            	$this->view->assign ( 'file_flash', '/' . $GLOBALS['TCA'][$recordTable]['columns'][$recordField]['config']['uploadfolder'] . $data[$recordField] );
 	    	}
 	    	
 	    	$this->view->assign ( 'flashplayer', $this->conf->getPlayerPath());
@@ -92,6 +92,15 @@ class Tx_Jwplayer_Controller_AjaxPlayerController extends Tx_Extbase_MVC_Control
         }
         return $path;
     }
+
+	/**
+	 *      Return ajaxPlayer setting, selected by name
+	 *      @parameter      string  $name
+	 *      @return         string
+	 */
+	protected function getAjaxSetting( $name ) {
+		return $this->settings['ajaxPlayer'][ $name ];
+	}
 
 	/**
 	 *	Return setting, selected by name
