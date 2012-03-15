@@ -75,13 +75,15 @@ class Tx_Jwplayer_Configuration_ExtensionManager implements t3lib_Singleton {
 	public function getPlayerPath() {
 		$pathLicensedPlayer = $this->getPathLicensedPlayer();
 		if(!empty($pathLicensedPlayer)){
-			$path_player = $this->getPathLicensedPlayer();
+			$path_player = t3lib_div::getFileAbsFileName($this->getPathLicensedPlayer());
 		} else {
 			$uri = 'EXT:jwplayer/Resources/Public/Player/player.swf';
-			$uri = t3lib_div::getFileAbsFileName($uri);
-			$uri = substr($uri, strlen(PATH_site));
-			$path_player = '/'.$uri;
+			$path_player = t3lib_div::getFileAbsFileName($uri);
 		}
+		if(is_null($path_player)){
+			throw new Exception('Invalid jwplayer path', 201203151804);
+		}
+		$path_player = substr($path_player, strlen(PATH_site));
 		return $path_player;
 	}
 

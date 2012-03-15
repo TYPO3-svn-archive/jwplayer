@@ -7,7 +7,7 @@ class Tx_Jwplayer_Controller_PlayerController extends Tx_Extbase_MVC_Controller_
 	/**
 	 * define separators for params and their values
 	 */
-	const UPLOAD_PATH = '/uploads/tx_jwplayer/';
+	const UPLOAD_PATH = 'uploads/tx_jwplayer/';
 	
 	var $allowedSkinExtension = array(
 		'zip',
