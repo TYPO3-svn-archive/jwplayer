@@ -314,12 +314,12 @@ class Tx_Jwplayer_Controller_PlayerController extends Tx_Extbase_MVC_Controller_
 		}
 
 			// html5
-		if( $itemArray['movieitem']['file_flash'] ) {
+		if( $itemArray['movieitem']['file_ogv'] ) {
 			$ogv = $this->solveMoviePath( $itemArray['movieitem']['file_ogv'] );
 			$movieArray['html5'][ pathinfo( $ogv, PATHINFO_EXTENSION ) ] = $ogv;
 		}
 
-		if( $itemArray['movieitem']['file_flash'] ) {
+		if( $itemArray['movieitem']['file_webm'] ) {
 			$webm = $this->solveMoviePath( $itemArray['movieitem']['file_webm'] );
 			$movieArray['html5'][ pathinfo( $webm, PATHINFO_EXTENSION ) ] = $webm;
 		}
@@ -347,7 +347,7 @@ class Tx_Jwplayer_Controller_PlayerController extends Tx_Extbase_MVC_Controller_
 		if( !empty( $filename ) ) {
 			switch( $type ) {
 				case 'file':
-					$filePath = self::UPLOAD_PATH . $filename;
+					$filePath = '/'.self::UPLOAD_PATH . $filename;
 					break;
 				case 'url':
 					$filePath = ( $this->checkUrl( $filename ) ) ? $filename : '';
