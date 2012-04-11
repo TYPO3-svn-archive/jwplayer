@@ -3,14 +3,15 @@ var tx_jwplayer = {
 		if(typeof(tx_jwplayer_list)!="undefined"){
 			for (var playerId in tx_jwplayer_list){
 				var config = tx_jwplayer_list[playerId];
-				
-				if( html5File = tx_jwplayer.chooseHtml5Format( config.html5 ) ) {
-				
-					config.modes[0]['config'] = {
-						'file': html5File,
-						'provider': 'video'
-					};	
-				}
+
+//					Disabled, use levels from jwplayer				
+//				if( html5File = tx_jwplayer.chooseHtml5Format( config.html5 ) ) {
+//				
+//					config.modes[0]['config'] = {
+//						'file': html5File,
+//						'provider': 'video'
+//					};	
+//				}
 				
 					// check if element exists
 				if( document.getElementById( playerId ) ) {

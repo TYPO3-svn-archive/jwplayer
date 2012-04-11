@@ -54,11 +54,16 @@
 	<f:escape>{</f:escape>title: '{item.title}', description: '{item.description}', <f:if condition="{item.duration} > 0"><f:then>duration:{item.duration},</f:then></f:if> file:'{item.file}', image: '{item.image}'<f:escape>}</f:escape>,
 	</f:else></f:if></f:for>
 	];
+	var html5 = [
+	<f:for each="{files_html5}" as="item" iteration="counter"><f:if condition='{counter.isLast}'><f:then>
+	<f:escape>{</f:escape>file:'{item}'<f:escape>}</f:escape>
+	</f:then><f:else>
+	<f:escape>{</f:escape>file:'{item}'<f:escape>}</f:escape>,</f:else></f:if></f:for>
+	];
 	/* <![CDATA[ */
 	var config = {
 		id: player_id,
 		file: files["flash"],
-		html5: files["html5"],
 		width: width,
 		height: height,
 		bufferlength:bufferlength,
@@ -75,8 +80,7 @@
 			{
 				type: 'html5',
 				config: {
-					'file': '',
-					'provider': 'video'
+					levels: html5
 				}
 			},
 			{
