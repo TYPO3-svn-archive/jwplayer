@@ -383,8 +383,8 @@ class Tx_Jwplayer_Controller_PlayerController extends Tx_Extbase_MVC_Controller_
 		$extPath = t3lib_extMgm::siteRelPath ( 'jwplayer' );
 		$file = $extPath . 'Resources/Public/Player/jwplayer.js';
 		#$GLOBALS ['TSFE']->getPageRenderer ()->addJsFooterFile( $file );
-        $GLOBALS ['TSFE']->getPageRenderer ()->addJsFooterLibrary('jwplayer', $file);
-        $file = $extPath . 'Resources/Public/Js/tx_jw_player.js';
+        $GLOBALS ['TSFE']->getPageRenderer ()->addJsFooterLibrary('jwplayer', $this->conf->getJsPath());
+        #$file = $extPath . 'Resources/Public/Js/tx_jw_player.js';
         $GLOBALS ['TSFE']->getPageRenderer ()->addJsFooterFile( $file ); 
 	}
 	/**
