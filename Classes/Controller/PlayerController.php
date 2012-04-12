@@ -278,7 +278,7 @@ class Tx_Jwplayer_Controller_PlayerController extends Tx_Extbase_MVC_Controller_
 						$GLOBALS['TSFE']->getPageRenderer()->addMetaTag( '<meta property="og:title" content="'.htmlspecialchars($title).'"/>' );
 	
 						# TODO: Render image to 50x50 PX
-						$imgPath = t3lib_div::getIndpEnv('TYPO3_SITE_URL') . $previewImagePath ;
+						$imgPath = $this->removeLastChar(t3lib_div::getIndpEnv('TYPO3_SITE_URL')) . $previewImagePath;
 						$GLOBALS['TSFE']->getPageRenderer()->addMetaTag( '<meta property="og:image" content="'.$imgPath.'">' );
 					}
 				}
@@ -410,7 +410,7 @@ class Tx_Jwplayer_Controller_PlayerController extends Tx_Extbase_MVC_Controller_
 	private function getUploadPath( $filename  = NULL) {
 		$path = '';
 		if( $filename ){
-			$path = self::UPLOAD_PATH . $filename;
+			$path = '/' . self::UPLOAD_PATH . $filename;
 		}
 		return $path;
 	}
