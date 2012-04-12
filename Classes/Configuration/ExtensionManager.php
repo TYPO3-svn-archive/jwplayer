@@ -56,9 +56,9 @@ class Tx_Jwplayer_Configuration_ExtensionManager implements t3lib_Singleton {
 		$pathSetting = $this->get ( 'path_licensed_player' );
 		$path = '';
 
-		if(!empty($pathSetting) && file_exists(t3lib_div::getFileAbsFileName($pathSetting) ){
+		if(!empty($pathSetting) && file_exists(t3lib_div::getFileAbsFileName($pathSetting))){
 			$path = t3lib_div::getFileAbsFileName($pathSetting);
-		} elseif(!empty($pathSetting) && is_dir(t3lib_div::getFileAbsFileName($pathSetting)) && file_exists(t3lib_div::getFileAbsFileName($pathSetting . 'player.swf') ) {
+		} elseif(!empty($pathSetting) && is_dir(t3lib_div::getFileAbsFileName($pathSetting)) && file_exists(t3lib_div::getFileAbsFileName($pathSetting . 'player.swf'))) {
 			$path = t3lib_div::getFileAbsFileName($pathSetting . 'player.swf');
 		}
 
