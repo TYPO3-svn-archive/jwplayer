@@ -119,6 +119,11 @@ class Tx_Jwplayer_Controller_PlayerController extends Tx_Extbase_MVC_Controller_
 			$skinFile = $this->getUploadPath( $this->getSetting( 'skin' ) );
 		}
 
+			// add slash
+		if( substr($skinFile, 0, 1) != '/') {
+			$skinFile = '/' . $skinFile;
+		}
+
 		return $skinFile;
 	}
 
