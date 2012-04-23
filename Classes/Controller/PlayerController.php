@@ -120,7 +120,7 @@ class Tx_Jwplayer_Controller_PlayerController extends Tx_Extbase_MVC_Controller_
 		}
 
 			// add slash
-		if( substr($skinFile, 0, 1) != '/') {
+		if( !empty($skinFile) && substr($skinFile, 0, 1) != '/') {
 			$skinFile = '/' . $skinFile;
 		}
 
