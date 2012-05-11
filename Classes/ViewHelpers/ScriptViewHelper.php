@@ -39,10 +39,10 @@ class Tx_Jwplayer_ViewHelpers_ScriptViewHelper extends Tx_Fluid_Core_ViewHelper_
 	public function render($inline=TRUE, $compress=FALSE, $forceOnTop=FALSE, $pageRenderer=TRUE) {
         	$content = $this->renderChildren();
         	/** @var $pagerender t3lib_pagerenderer */
-	
+
 		if ( $pageRenderer == true ) {
         		$pagerender = $GLOBALS['TSFE']->getPageRenderer();
-        		$pagerender->addJsInlineCode(md5($content), $content, $compress, $forceOnTop);
+        		$pagerender->addJsFooterInlineCode(md5($content), $content, $compress, $forceOnTop);
 		} else {
 			return $content;
 		}

@@ -54,7 +54,7 @@ class Tx_Jwplayer_Controller_PlayerController extends Tx_Extbase_MVC_Controller_
 		} else {
 			$this->view->assign ( 'usePageRenderer', false);
 		}
-
+		$this->view->assign ( 'usePageRenderer', false);
 		$playerId = uniqid('player');
 
 		$this->view->assign ( 'player_id', $playerId);
@@ -346,6 +346,7 @@ class Tx_Jwplayer_Controller_PlayerController extends Tx_Extbase_MVC_Controller_
 	 *	@return	string
 	 */
 	protected function solveMoviePath( $filename, $type='file' ) {
+		if ($this->settings['disableSolveMoviePath'] == TRUE) return $filename;
 
 		$filePath = '';
 
@@ -411,6 +412,8 @@ class Tx_Jwplayer_Controller_PlayerController extends Tx_Extbase_MVC_Controller_
 	 * @return 	string
 	 */
 	private function getUploadPath( $filename  = NULL) {
+		if ($this->settings['disableSolveUploadPath'] == TRUE) return $filename;
+
 		$path = '';
 		if( $filename ){
 			$path = '/' . self::UPLOAD_PATH . $filename;
