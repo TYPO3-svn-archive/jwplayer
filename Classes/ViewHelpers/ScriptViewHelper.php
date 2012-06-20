@@ -29,23 +29,24 @@
  */
 class Tx_Jwplayer_ViewHelpers_ScriptViewHelper extends Tx_Fluid_Core_ViewHelper_AbstractViewHelper {
 
-    /**
-     * @param string $content
-     * @param bool $inline
-     * @param bool $compress
-     * @param bool $forceOnTop
-     * @return void
-     */
+	/**
+	 * @param bool $inline
+	 * @param bool $compress
+	 * @param bool $forceOnTop
+	 * @param bool $pageRenderer
+	 * @return void
+	 */
 	public function render($inline=TRUE, $compress=FALSE, $forceOnTop=FALSE, $pageRenderer=TRUE) {
-        	$content = $this->renderChildren();
-        	/** @var $pagerender t3lib_pagerenderer */
+		$content = $this->renderChildren();
+		/** @var $pagerender t3lib_pagerenderer */
 
 		if ( $pageRenderer == true ) {
-        		$pagerender = $GLOBALS['TSFE']->getPageRenderer();
-        		$pagerender->addJsFooterInlineCode(md5($content), $content, $compress, $forceOnTop);
+			$pagerender = $GLOBALS['TSFE']->getPageRenderer();
+			$pagerender->addJsFooterInlineCode(md5($content), $content, $compress, $forceOnTop);
 		} else {
 			return $content;
 		}
 	}
 }
+
 ?>

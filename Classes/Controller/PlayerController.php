@@ -4,11 +4,15 @@
  * @package jwplayer
  */
 class Tx_Jwplayer_Controller_PlayerController extends Tx_Extbase_MVC_Controller_ActionController {
+
 	/**
 	 * define separators for params and their values
 	 */
 	const UPLOAD_PATH = 'uploads/tx_jwplayer/';
 
+	/**
+	 * @var array
+	 */
 	var $allowedSkinExtension = array(
 		'zip',
 		'swf',
@@ -37,7 +41,6 @@ class Tx_Jwplayer_Controller_PlayerController extends Tx_Extbase_MVC_Controller_
 	 */
 	protected function initializeAction() {
 		$this->flashConfigGenerator = t3lib_div::makeInstance ( 'Tx_Jwplayer_FlashConfigGenerator' );
-
 		$this->conf = t3lib_div::makeInstance ( 'Tx_Jwplayer_Configuration_ExtensionManager' );
 	}
 
@@ -46,7 +49,6 @@ class Tx_Jwplayer_Controller_PlayerController extends Tx_Extbase_MVC_Controller_
 	 * @return string
 	 */
 	public function indexAction() {
-
 
 		if( $this->getSetting('disableJsAutoInclude') != 1 ) {
 			$this->addJavaScript();
@@ -89,16 +91,14 @@ class Tx_Jwplayer_Controller_PlayerController extends Tx_Extbase_MVC_Controller_
 		}
 	}
 
-
 	/**
 	 *	Return setting, selected by name
-	 *	@parameter	string	$name
-	 *	@return 	string
+	 *
+	 *	@param string $name
+	 *	@return string
 	 */
 	protected function getSetting( $name ) {
-
 		$value = ( $this->settings['overrideGlobal'][ $name ] ) ? $this->settings['overrideGlobal'][ $name ] : $this->settings[ $name ];
-
 		return $value;
 	}
 
@@ -108,7 +108,6 @@ class Tx_Jwplayer_Controller_PlayerController extends Tx_Extbase_MVC_Controller_
 	 *	@return string
 	 */
 	protected function getSkin() {
-
 		$skinFile = '';
 
 		if( file_exists( PATH_site . $this->conf->getSkin() ) && $this->checkSkinFileExtension( PATH_site . $this->conf->getSkin() ) ) {
@@ -119,7 +118,7 @@ class Tx_Jwplayer_Controller_PlayerController extends Tx_Extbase_MVC_Controller_
 			$skinFile = $this->getUploadPath( $this->getSetting( 'skin' ) );
 		}
 
-			// add slash
+		// add slash
 		if( !empty($skinFile) && substr($skinFile, 0, 1) != '/') {
 			$skinFile = '/' . $skinFile;
 		}
@@ -129,21 +128,21 @@ class Tx_Jwplayer_Controller_PlayerController extends Tx_Extbase_MVC_Controller_
 
 	/**
 	 *	Check if file extension is allow
-	 *	@param	string	$file
-	 *	@return	bool
+	 *
+	 *	@param string $file
+	 *	@return bool
 	 */
 	protected function checkSkinFileExtension( $file) {
-
 		return in_array( pathinfo( PATH_site . $file, PATHINFO_EXTENSION ) ,$this->allowedSkinExtension );
 	}
 
 	/**
 	 *	Return setting for playlist position
 	 *	When less than 2 items are available don't show playlist
-	 *	@return	string
+	 *
+	 *	@return string
 	 */
 	protected function getPlaylistPosition() {
-
 		$position = $this->settings['playlistposition'];
 
 		if( !$this->hasPlaylist() ) {
@@ -155,10 +154,10 @@ class Tx_Jwplayer_Controller_PlayerController extends Tx_Extbase_MVC_Controller_
 
 	/**
 	 *	Check if playlist should be shown
-	 *	@return	bool
+	 *
+	 *	@return bool
 	 */
 	protected function hasPlaylist() {
-
 		$flag = false;
 
 		if( count( $this->getSetting( 'moviesection' ) ) > 1 ) {
@@ -170,10 +169,10 @@ class Tx_Jwplayer_Controller_PlayerController extends Tx_Extbase_MVC_Controller_
 
 	/**
 	 *	Calculate width of player
-	 *	@return	integer
+	 *
+	 *	@return integer
 	 */
 	protected function getPlayerWidth() {
-
 		$width = $this->getSetting( 'width' );
 
 		if ( $this->hasPlaylist() && ( $this->getSetting( 'playlistposition' ) == 'left' || $this->getSetting( 'playlistposition' ) == 'right' ) ) {
@@ -185,10 +184,10 @@ class Tx_Jwplayer_Controller_PlayerController extends Tx_Extbase_MVC_Controller_
 
 	/**
 	 *	Calculate height of player
-	 *	@return	integer
+	 *
+	 *	@return integer
 	 */
 	protected function getPlayerHeight() {
-
 		$height = $this->getSetting( 'height' );
 
 		if ( $this->hasPlaylist() && ( $this->getSetting( 'playlistposition' ) == 'top' || $this->getSetting( 'playlistposition' ) == 'bottom' ) ) {
@@ -288,23 +287,21 @@ class Tx_Jwplayer_Controller_PlayerController extends Tx_Extbase_MVC_Controller_
 					}
 				}
 			}
-
 		}
-
 	}
 
 	/**
 	 *	Generate a list with given movie formats
-	 *	@param
+	 *
+	 *	@param array $itemArray
+	 * @return array
 	 */
 	protected function getMovieList( $itemArray ) {
-
 		$movieArray = array(
 			'flash' => '',
 			'html5' => array(),
 			'url' => ''
 		);
-
 
 			// flashhtml5
 		if( $itemArray['movieitem']['file_flashhtml5'] ) {
@@ -341,9 +338,10 @@ class Tx_Jwplayer_Controller_PlayerController extends Tx_Extbase_MVC_Controller_
 
 	/**
 	 *	Create file path, by URL checks the syntax
-	 *	@param	string	$filename
-	 *	@param	string	$type
-	 *	@return	string
+	 *
+	 *	@param string $filename
+	 *	@param string $type
+	 *	@return string
 	 */
 	protected function solveMoviePath( $filename, $type='file' ) {
 		if ($this->settings['disableSolveMoviePath'] == TRUE) return $filename;
@@ -367,11 +365,10 @@ class Tx_Jwplayer_Controller_PlayerController extends Tx_Extbase_MVC_Controller_
 	/**
 	 *	Check Url
 	 *
-	 *	@param	string	$url
-	 *	@return	bool
+	 *	@param string $url
+	 *	@return bool
 	 */
 	private function checkUrl( $url ) {
-
 		$flag = false;
 
 		if( preg_match("/[h][t]{2}[p][\:][\/]{2}[w.0-9]{0,4}[a-zA-Z0-9.-]{2,40}[.][a-zA-Z]{2,7}/", $url ) ) {
@@ -391,8 +388,10 @@ class Tx_Jwplayer_Controller_PlayerController extends Tx_Extbase_MVC_Controller_
 		$file = $extPath . 'Resources/Public/Js/tx_jw_player.js';
 		$GLOBALS ['TSFE']->getPageRenderer ()->addJsFooterFile( $file );
 	}
+
 	/**
 	 * create URL to action 'showVideo'
+	 *
 	 * @return string
 	 */
 	private function createVideoUrl() {
@@ -407,9 +406,10 @@ class Tx_Jwplayer_Controller_PlayerController extends Tx_Extbase_MVC_Controller_
 		$url = $this->uriBuilder->setArguments($arguments)->setCreateAbsoluteUri(TRUE)->buildFrontendUri();
 		return $url;
 	}
+
 	/**
-	 * @param	string	$filename
-	 * @return 	string
+	 * @param string $filename
+	 * @return string
 	 */
 	private function getUploadPath( $filename  = NULL) {
 		if ($this->settings['disableSolveUploadPath'] == TRUE) return $filename;
@@ -420,6 +420,7 @@ class Tx_Jwplayer_Controller_PlayerController extends Tx_Extbase_MVC_Controller_
 		}
 		return $path;
 	}
+
 	/**
 	 * @param string $string
 	 * @return string
@@ -428,3 +429,5 @@ class Tx_Jwplayer_Controller_PlayerController extends Tx_Extbase_MVC_Controller_
 		return substr($string,0,-1);
 	}
 }
+
+?>

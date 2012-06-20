@@ -31,8 +31,8 @@ class tx_jwplayer_wizicon {
 	/**
 	 * Adds the newloginbox wizard icon
 	 *
-	 * @param	array		Input array with wizard items for plugins
-	 * @return	array		Modified input array, having the item for newloginbox added.
+	 * @param array	 Input array with wizard items for plugins
+	 * @return array Modified input array, having the item for newloginbox added.
 	 */
 	function proc($wizardItems)	{
 		global $LANG;
@@ -52,7 +52,7 @@ class tx_jwplayer_wizicon {
 	/**
 	 * Includes the locallang file for the 'tt_news' extension
 	 *
-	 * @return	array		The LOCAL_LANG array
+	 * @return array The LOCAL_LANG array
 	 */
 	function includeLocalLang()	{
 		$llFile = t3lib_extMgm::extPath('jwplayer').'locallang.xml';
@@ -60,7 +60,6 @@ class tx_jwplayer_wizicon {
 		return $LOCAL_LANG;
 	}
 }
-
 
 if (defined('TYPO3_MODE') && $TYPO3_CONF_VARS[TYPO3_MODE]['XCLASS']['ext/jwplayer/Classes/class.tx_jwplayer_wizicon.php'])	{
 	include_once($TYPO3_CONF_VARS[TYPO3_MODE]['XCLASS']['ext/jwplayer/Classes/class.tx_jwplayer_wizicon.php']);

@@ -4,7 +4,7 @@
  * @package jwplayer
  */
 class Tx_Jwplayer_Configuration_ExtensionManager implements t3lib_Singleton {
-	
+
 	/**
 	 * @var array
 	 */
@@ -26,7 +26,7 @@ class Tx_Jwplayer_Configuration_ExtensionManager implements t3lib_Singleton {
 	private function get($key) {
 		return $this->configuration[$key];
 	}
-	
+
 	/**
 	 * @return string
 	 */
@@ -71,35 +71,35 @@ class Tx_Jwplayer_Configuration_ExtensionManager implements t3lib_Singleton {
 	public function getSkin() {
 		return $this->get ( 'skin' );
 	}
-	
+
 	/**
 	 * @return string
 	 */
 	public function getBackcolor() {
 		return $this->get ( 'backcolor' );
 	}
-	
+
 	/**
 	 * @return string
 	 */
 	public function getFontcolor() {
 		return $this->get ( 'fontcolor' );
 	}
-	
+
 	/**
 	 * @return string
 	 */
 	public function getLightcolor() {
 		return $this->get ( 'lightcolor' );
 	}
-	
+
 	/**
 	 * @return string
 	 */
 	public function getScreenscolor() {
 		return $this->get ( 'screencolor' );
 	}
-	
+
 	/**
 	 * @return string
 	 */
@@ -133,3 +133,5 @@ class Tx_Jwplayer_Configuration_ExtensionManager implements t3lib_Singleton {
 	}
 
 }
+
+?>

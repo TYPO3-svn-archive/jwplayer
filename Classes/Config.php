@@ -4,18 +4,20 @@
  * @package jwplayer
  */
 class Tx_Jwplayer_Config {
+
 	/**
 	 * @var array
 	 */
 	private $jsConfig = array();
+
 	/**
 	 * Constructor
 	 */
 	public function __construct(){
 		$extConfig = t3lib_div::makeInstance ( 'Tx_Jwplayer_Configuration_ExtensionManager' );
-		
+
 		$this->jsConfig['flashplayer'] = $extConfig->getPlayerPath();
-		
+
 		$skin = $extConfig->getSkin();
 		if(!empty($skin)) {
 			$this->jsConfig['skin'] = $skin;
@@ -37,6 +39,7 @@ class Tx_Jwplayer_Config {
 			$this->jsConfig['screenscolor'] = $screenscolor;
 		}
 	}
+
 	/**
 	 * @param array $settings
 	 */
@@ -57,13 +60,14 @@ class Tx_Jwplayer_Config {
 		$config_keys[] = 'image';
 		$config_keys[] = 'skin';
 		$config_keys[] = 'file';
-		
+
 		foreach($settings as $key =>$value){
 			if(in_array($key,$config_keys) && $value!==''){
 				$this->jsConfig[$key] = $value;
 			}
 		}
 	}
+
 	/**
 	 * @return string $jsConfig
 	 */
@@ -72,3 +76,5 @@ class Tx_Jwplayer_Config {
 	}
 
 }
+
+?>
