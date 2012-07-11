@@ -12,7 +12,7 @@
 
 	$config = array(
 		'userFunc'		=> 'tx_extbase_core_bootstrap->run',
-		'pluginName'    => 'Pi2',
+		'pluginName'    => 'Ajax',
 		'extensionName' => $extensionName,
 		'settings'		=> $pluginConfig
 	);

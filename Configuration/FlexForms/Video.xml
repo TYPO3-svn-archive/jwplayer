@@ -8,7 +8,7 @@
 			<ROOT>
 				<type>array</type>
 				<TCEforms>
-					<sheetTitle>LLL:EXT:jwplayer/Resources/Private/Language/locallang_db.xml:flexform.sheets.common</sheetTitle>
+					<sheetTitle>LLL:EXT:jwplayer/Resources/Private/Language/locallang_db.xml:flexform.video.sheets.common</sheetTitle>
 				</TCEforms>
 				<el>
 					<settings.moviesection>
@@ -18,12 +18,12 @@
 							<movieitem>
 								<type>array</type>
 								<tx_templavoila>
-									<title>LLL:EXT:jwplayer/Resources/Private/Language/locallang_db.xml:flexform.settings.movieItem</title>
+									<title>LLL:EXT:jwplayer/Resources/Private/Language/locallang_db.xml:flexform.video.settings.movieItem</title>
 								</tx_templavoila>
 								<el>
 									<title>
 										<TCEforms>
-											<label>LLL:EXT:jwplayer/Resources/Private/Language/locallang_db.xml:flexform.settings.title</label>
+											<label>LLL:EXT:jwplayer/Resources/Private/Language/locallang_db.xml:flexform.video.settings.title</label>
 											<config>
 												<type>input</type>
 												<size>30</size>
@@ -33,7 +33,7 @@
 									</title>
 									<description>
 										<TCEforms>
-											<label>LLL:EXT:jwplayer/Resources/Private/Language/locallang_db.xml:flexform.settings.description</label>
+											<label>LLL:EXT:jwplayer/Resources/Private/Language/locallang_db.xml:flexform.video.settings.description</label>
 											<config>
 												<type>input</type>
 												<size>100</size>
@@ -43,7 +43,7 @@
 									</description>
 									<duration>
 										<TCEforms>
-											<label>LLL:EXT:jwplayer/Resources/Private/Language/locallang_db.xml:flexform.settings.duration</label>
+											<label>LLL:EXT:jwplayer/Resources/Private/Language/locallang_db.xml:flexform.video.settings.duration</label>
 											<config>
 												<type>input</type>
 												<size>5</size>
@@ -53,7 +53,7 @@
 									</duration>
 									<file_flashhtml5>
 										<TCEforms>
-											<label>LLL:EXT:jwplayer/Resources/Private/Language/locallang_db.xml:flexform.settings.flashhtml5</label>
+											<label>LLL:EXT:jwplayer/Resources/Private/Language/locallang_db.xml:flexform.video.settings.flashhtml5</label>
 											<config>
 												<type>group</type>
 												<internal_type>file</internal_type>
@@ -68,7 +68,7 @@
 									</file_flashhtml5>
 									<file_flash>
 										<TCEforms>
-											<label>LLL:EXT:jwplayer/Resources/Private/Language/locallang_db.xml:flexform.settings.flash</label>
+											<label>LLL:EXT:jwplayer/Resources/Private/Language/locallang_db.xml:flexform.video.settings.flash</label>
 											<config>
 												<type>group</type>
 												<internal_type>file</internal_type>
@@ -83,7 +83,7 @@
 									</file_flash>
 									<file_ogv>
 										<TCEforms>
-											<label>LLL:EXT:jwplayer/Resources/Private/Language/locallang_db.xml:flexform.settings.html5_ogv</label>
+											<label>LLL:EXT:jwplayer/Resources/Private/Language/locallang_db.xml:flexform.video.settings.html5_ogv</label>
 											<config>
 												<type>group</type>
 												<internal_type>file</internal_type>
@@ -98,7 +98,7 @@
 									</file_ogv>
 									<file_webm>
 										<TCEforms>
-											<label>LLL:EXT:jwplayer/Resources/Private/Language/locallang_db.xml:flexform.settings.html5_webm</label>
+											<label>LLL:EXT:jwplayer/Resources/Private/Language/locallang_db.xml:flexform.video.settings.html5_webm</label>
 											<config>
 												<type>group</type>
 												<internal_type>file</internal_type>
@@ -110,10 +110,10 @@
 												<minitems>0</minitems>
 											</config>
 										</TCEforms>
-									</file_webm>									
+									</file_webm>
 									<url>
 										<TCEforms>
-											<label>LLL:EXT:jwplayer/Resources/Private/Language/locallang_db.xml:flexform.settings.url</label>
+											<label>LLL:EXT:jwplayer/Resources/Private/Language/locallang_db.xml:flexform.video.settings.url</label>
 											<config>
 												<type>input</type>
 												<size>30</size>
@@ -123,7 +123,7 @@
 									</url>
 									<image>
 										<TCEforms>
-											<label>LLL:EXT:jwplayer/Resources/Private/Language/locallang_db.xml:flexform.settings.previewImage</label>
+											<label>LLL:EXT:jwplayer/Resources/Private/Language/locallang_db.xml:flexform.video.settings.previewImage</label>
 									 		<config>
 												<type>group</type>
 												<internal_type>file</internal_type>
@@ -142,7 +142,7 @@
 					</settings.moviesection>
 					<settings.width>
 						<TCEforms>
-							<label>LLL:EXT:jwplayer/Resources/Private/Language/locallang_db.xml:flexform.settings.width</label>
+							<label>LLL:EXT:jwplayer/Resources/Private/Language/locallang_db.xml:flexform.video.settings.width</label>
 							<config>
 								<type>input</type>
 								<eval>int</eval>
@@ -153,7 +153,7 @@
 					</settings.width>
 					<settings.height>
 						<TCEforms>
-							<label>LLL:EXT:jwplayer/Resources/Private/Language/locallang_db.xml:flexform.settings.height</label>
+							<label>LLL:EXT:jwplayer/Resources/Private/Language/locallang_db.xml:flexform.video.settings.height</label>
 							<config>
 								<type>input</type>
 								<eval>int</eval>
@@ -164,25 +164,25 @@
 					</settings.height>
 					<settings.controlbar>
 						<TCEforms>
-							<label>LLL:EXT:jwplayer/Resources/Private/Language/locallang_db.xml:flexform.settings.controlbar</label>
+							<label>LLL:EXT:jwplayer/Resources/Private/Language/locallang_db.xml:flexform.video.settings.controlbar</label>
 							<config>
 								<type>select</type>
 								<maxitems>1</maxitems>
 								<items type="array">
 									<numIndex index="0" type="array">
-										<numIndex index="0">LLL:EXT:jwplayer/Resources/Private/Language/locallang_db.xml:flexform.settings.controlbar.bottom</numIndex>
+										<numIndex index="0">LLL:EXT:jwplayer/Resources/Private/Language/locallang_db.xml:flexform.video.settings.controlbar.bottom</numIndex>
 										<numIndex index="1">bottom</numIndex>
 									</numIndex>
 									<numIndex index="1" type="array">
-										<numIndex index="0">LLL:EXT:jwplayer/Resources/Private/Language/locallang_db.xml:flexform.settings.controlbar.top</numIndex>
+										<numIndex index="0">LLL:EXT:jwplayer/Resources/Private/Language/locallang_db.xml:flexform.video.settings.controlbar.top</numIndex>
 										<numIndex index="1">top</numIndex>
 									</numIndex>
 									<numIndex index="2" type="array">
-										<numIndex index="0">LLL:EXT:jwplayer/Resources/Private/Language/locallang_db.xml:flexform.settings.controlbar.over</numIndex>
+										<numIndex index="0">LLL:EXT:jwplayer/Resources/Private/Language/locallang_db.xml:flexform.video.settings.controlbar.over</numIndex>
 										<numIndex index="1">over</numIndex>
 									</numIndex>
 									<numIndex index="3" type="array">
-										<numIndex index="0">LLL:EXT:jwplayer/Resources/Private/Language/locallang_db.xml:flexform.settings.controlbar.none</numIndex>
+										<numIndex index="0">LLL:EXT:jwplayer/Resources/Private/Language/locallang_db.xml:flexform.video.settings.controlbar.none</numIndex>
 										<numIndex index="1">none</numIndex>
 									</numIndex>
 								</items>
@@ -197,30 +197,30 @@
 			<ROOT>
 				<type>array</type>
 				<TCEforms>
-					<sheetTitle>LLL:EXT:jwplayer/Resources/Private/Language/locallang_db.xml:flexform.sheets.playlist</sheetTitle>
+					<sheetTitle>LLL:EXT:jwplayer/Resources/Private/Language/locallang_db.xml:flexform.video.sheets.playlist</sheetTitle>
 				</TCEforms>
 				<el>
 					<settings.playlistposition>
 						<TCEforms>
-							<label>LLL:EXT:jwplayer/Resources/Private/Language/locallang_db.xml:flexform.settings.playlistposition</label>
+							<label>LLL:EXT:jwplayer/Resources/Private/Language/locallang_db.xml:flexform.video.settings.playlistposition</label>
 							<config>
 								<type>select</type>
 								<maxitems>1</maxitems>
 								<items type="array">
 									<numIndex index="0" type="array">
-										<numIndex index="0">LLL:EXT:jwplayer/Resources/Private/Language/locallang_db.xml:flexform.settings.playlistposition.top</numIndex>
+										<numIndex index="0">LLL:EXT:jwplayer/Resources/Private/Language/locallang_db.xml:flexform.video.settings.playlistposition.top</numIndex>
 										<numIndex index="1">top</numIndex>
 									</numIndex>
 									<numIndex index="1" type="array">
-										<numIndex index="0">LLL:EXT:jwplayer/Resources/Private/Language/locallang_db.xml:flexform.settings.playlistposition.left</numIndex>
+										<numIndex index="0">LLL:EXT:jwplayer/Resources/Private/Language/locallang_db.xml:flexform.video.settings.playlistposition.left</numIndex>
 										<numIndex index="1">left</numIndex>
 									</numIndex>
 									<numIndex index="2" type="array">
-										<numIndex index="0">LLL:EXT:jwplayer/Resources/Private/Language/locallang_db.xml:flexform.settings.playlistposition.right</numIndex>
+										<numIndex index="0">LLL:EXT:jwplayer/Resources/Private/Language/locallang_db.xml:flexform.video.settings.playlistposition.right</numIndex>
 										<numIndex index="1">right</numIndex>
 									</numIndex>
 									<numIndex index="3" type="array">
-										<numIndex index="0">LLL:EXT:jwplayer/Resources/Private/Language/locallang_db.xml:flexform.settings.controlbar.bottom</numIndex>
+										<numIndex index="0">LLL:EXT:jwplayer/Resources/Private/Language/locallang_db.xml:flexform.video.settings.controlbar.bottom</numIndex>
 										<numIndex index="1">bottom</numIndex>
 									</numIndex>
 								</items>
@@ -230,7 +230,7 @@
 					</settings.playlistposition>
 					<settings.playlistsize>
 						<TCEforms>
-							<label>LLL:EXT:jwplayer/Resources/Private/Language/locallang_db.xml:flexform.settings.playlistsize</label>
+							<label>LLL:EXT:jwplayer/Resources/Private/Language/locallang_db.xml:flexform.video.settings.playlistsize</label>
 							<config>
 								<type>input</type>
 								<eval>int</eval>
@@ -246,12 +246,12 @@
 			<ROOT>
 				<type>array</type>
 				<TCEforms>
-					<sheetTitle>LLL:EXT:jwplayer/Resources/Private/Language/locallang_db.xml:flexform.sheets.video</sheetTitle>
+					<sheetTitle>LLL:EXT:jwplayer/Resources/Private/Language/locallang_db.xml:flexform.video.sheets.video</sheetTitle>
 				</TCEforms>
 				<el>
 					<settings.autostart>
 						<TCEforms>
-							<label>LLL:EXT:jwplayer/Resources/Private/Language/locallang_db.xml:flexform.settings.autostart</label>
+							<label>LLL:EXT:jwplayer/Resources/Private/Language/locallang_db.xml:flexform.video.settings.autostart</label>
 							<config>
 								<type>check</type>
 							</config>
@@ -259,25 +259,25 @@
 					</settings.autostart>
 					<settings.repeat>
 						<TCEforms>
-							<label>LLL:EXT:jwplayer/Resources/Private/Language/locallang_db.xml:flexform.settings.repeat</label>
+							<label>LLL:EXT:jwplayer/Resources/Private/Language/locallang_db.xml:flexform.video.settings.repeat</label>
 							<config>
 								<type>select</type>
 								<maxitems>1</maxitems>
 								<items type="array">
 									<numIndex index="0" type="array">
-										<numIndex index="0">LLL:EXT:jwplayer/Resources/Private/Language/locallang_db.xml:flexform.settings.repeat.none</numIndex>
+										<numIndex index="0">LLL:EXT:jwplayer/Resources/Private/Language/locallang_db.xml:flexform.video.settings.repeat.none</numIndex>
 										<numIndex index="1">none</numIndex>
 									</numIndex>
 									<numIndex index="1" type="array">
-										<numIndex index="0">LLL:EXT:jwplayer/Resources/Private/Language/locallang_db.xml:flexform.settings.repeat.single</numIndex>
+										<numIndex index="0">LLL:EXT:jwplayer/Resources/Private/Language/locallang_db.xml:flexform.video.settings.repeat.single</numIndex>
 										<numIndex index="1">single</numIndex>
 									</numIndex>
 									<numIndex index="2" type="array">
-										<numIndex index="0">LLL:EXT:jwplayer/Resources/Private/Language/locallang_db.xml:flexform.settings.repeat.list</numIndex>
+										<numIndex index="0">LLL:EXT:jwplayer/Resources/Private/Language/locallang_db.xml:flexform.video.settings.repeat.list</numIndex>
 										<numIndex index="1">list</numIndex>
 									</numIndex>
 									<numIndex index="3" type="array">
-										<numIndex index="0">LLL:EXT:jwplayer/Resources/Private/Language/locallang_db.xml:flexform.settings.repeat.always</numIndex>
+										<numIndex index="0">LLL:EXT:jwplayer/Resources/Private/Language/locallang_db.xml:flexform.video.settings.repeat.always</numIndex>
 										<numIndex index="1">always</numIndex>
 									</numIndex>
 								</items>
@@ -287,7 +287,7 @@
 					</settings.repeat>
 					<settings.bufferlength>
 						<TCEforms>
-							<label>LLL:EXT:jwplayer/Resources/Private/Language/locallang_db.xml:flexform.settings.bufferlength</label>
+							<label>LLL:EXT:jwplayer/Resources/Private/Language/locallang_db.xml:flexform.video.settings.bufferlength</label>
 							<config>
 								<type>input</type>
 								<eval>int</eval>
@@ -297,24 +297,24 @@
 					</settings.bufferlength>
 					<settings.stretching>
 						<TCEforms>
-							<label>LLL:EXT:jwplayer/Resources/Private/Language/locallang_db.xml:flexform.settings.stretching</label>
+							<label>LLL:EXT:jwplayer/Resources/Private/Language/locallang_db.xml:flexform.video.settings.stretching</label>
 							<config>
 								<type>select</type>
 								<items type="array">
 									<numIndex index="0" type="array">
-										<numIndex index="0">LLL:EXT:jwplayer/Resources/Private/Language/locallang_db.xml:flexform.settings.stretching.none</numIndex>
+										<numIndex index="0">LLL:EXT:jwplayer/Resources/Private/Language/locallang_db.xml:flexform.video.settings.stretching.none</numIndex>
 										<numIndex index="1">none</numIndex>
 									</numIndex>
 									<numIndex index="1" type="array">
-										<numIndex index="0">LLL:EXT:jwplayer/Resources/Private/Language/locallang_db.xml:flexform.settings.stretching.exactfit</numIndex>
+										<numIndex index="0">LLL:EXT:jwplayer/Resources/Private/Language/locallang_db.xml:flexform.video.settings.stretching.exactfit</numIndex>
 										<numIndex index="1">exactfit</numIndex>
 									</numIndex>
 									<numIndex index="2" type="array">
-										<numIndex index="0">LLL:EXT:jwplayer/Resources/Private/Language/locallang_db.xml:flexform.settings.stretching.uniform</numIndex>
+										<numIndex index="0">LLL:EXT:jwplayer/Resources/Private/Language/locallang_db.xml:flexform.video.settings.stretching.uniform</numIndex>
 										<numIndex index="1">uniform</numIndex>
 									</numIndex>
 									<numIndex index="3" type="array">
-										<numIndex index="0">LLL:EXT:jwplayer/Resources/Private/Language/locallang_db.xml:flexform.settings.stretching.fill</numIndex>
+										<numIndex index="0">LLL:EXT:jwplayer/Resources/Private/Language/locallang_db.xml:flexform.video.settings.stretching.fill</numIndex>
 										<numIndex index="1">fill</numIndex>
 									</numIndex>
 								</items>
@@ -329,12 +329,12 @@
 			<ROOT>
 				<type>array</type>
 				<TCEforms>
-					<sheetTitle>LLL:EXT:jwplayer/Resources/Private/Language/locallang_db.xml:flexform.sheets.sound</sheetTitle>
+					<sheetTitle>LLL:EXT:jwplayer/Resources/Private/Language/locallang_db.xml:flexform.video.sheets.sound</sheetTitle>
 				</TCEforms>
 				<el>
 					<settings.volume>
 						<TCEforms>
-							<label>LLL:EXT:jwplayer/Resources/Private/Language/locallang_db.xml:flexform.settings.volume</label>
+							<label>LLL:EXT:jwplayer/Resources/Private/Language/locallang_db.xml:flexform.video.settings.volume</label>
 							<config>
 								<type>input</type>
 								<eval>int</eval>
@@ -345,7 +345,7 @@
 					</settings.volume>
 					<settings.mute>
 						<TCEforms>
-							<label>LLL:EXT:jwplayer/Resources/Private/Language/locallang_db.xml:flexform.settings.mute</label>
+							<label>LLL:EXT:jwplayer/Resources/Private/Language/locallang_db.xml:flexform.video.settings.mute</label>
 							<config>
 								<type>check</type>
 							</config>
@@ -358,12 +358,12 @@
 			<ROOT>
 				<type>array</type>
 				<TCEforms>
-					<sheetTitle>LLL:EXT:jwplayer/Resources/Private/Language/locallang_db.xml:flexform.sheets.plugins</sheetTitle>
+					<sheetTitle>LLL:EXT:jwplayer/Resources/Private/Language/locallang_db.xml:flexform.video.sheets.plugins</sheetTitle>
 				</TCEforms>
 				<el>
 					<settings.facebookPlugin>
 						<TCEforms>
-							<label>LLL:EXT:jwplayer/Resources/Private/Language/locallang_db.xml:flexform.settings.facebookPlugin</label>
+							<label>LLL:EXT:jwplayer/Resources/Private/Language/locallang_db.xml:flexform.video.settings.facebookPlugin</label>
 							<config>
 								<type>check</type>
 							</config>
@@ -376,21 +376,21 @@
 			<ROOT>
 				<type>array</type>
 				<TCEforms>
-					<sheetTitle>LLL:EXT:jwplayer/Resources/Private/Language/locallang_db.xml:flexform.sheets.metatags</sheetTitle>
+					<sheetTitle>LLL:EXT:jwplayer/Resources/Private/Language/locallang_db.xml:flexform.video.sheets.metatags</sheetTitle>
 				</TCEforms>
 				<el>
 					<settings.add_metatags>
 						<TCEforms>
-							<label>LLL:EXT:jwplayer/Resources/Private/Language/locallang_db.xml:flexform.settings.add_metatags</label>
+							<label>LLL:EXT:jwplayer/Resources/Private/Language/locallang_db.xml:flexform.video.settings.add_metatags</label>
 							<config>
 								<type>check</type>
-								<default>1</default>
+								<default>0</default>
 							</config>
 						</TCEforms>
 					</settings.add_metatags>
 					<settings.metatag_title>
 						<TCEforms>
-							<label>LLL:EXT:jwplayer/Resources/Private/Language/locallang_db.xml:flexform.settings.metatag_title</label>
+							<label>LLL:EXT:jwplayer/Resources/Private/Language/locallang_db.xml:flexform.video.settings.metatag_title</label>
 							<config>
 								<type>input</type>
 								<eval>trim</eval>
@@ -401,7 +401,7 @@
 					</settings.metatag_title>
 					<settings.metatag_description>
 						<TCEforms>
-							<label>LLL:EXT:jwplayer/Resources/Private/Language/locallang_db.xml:flexform.settings.metatag_description</label>
+							<label>LLL:EXT:jwplayer/Resources/Private/Language/locallang_db.xml:flexform.video.settings.metatag_description</label>
 							<config>
 								<type>input</type>
 								<eval>trim</eval>
@@ -417,12 +417,12 @@
 			<ROOT>
 				<type>array</type>
 				<TCEforms>
-					<sheetTitle>LLL:EXT:jwplayer/Resources/Private/Language/locallang_db.xml:flexform.sheets.skin</sheetTitle>
+					<sheetTitle>LLL:EXT:jwplayer/Resources/Private/Language/locallang_db.xml:flexform.video.sheets.skin</sheetTitle>
 				</TCEforms>
 				<el>
 					<settings.skin>
 						<TCEforms>
-							<label>LLL:EXT:jwplayer/Resources/Private/Language/locallang_db.xml:flexform.settings.skin</label>
+							<label>LLL:EXT:jwplayer/Resources/Private/Language/locallang_db.xml:flexform.video.settings.skin</label>
 					 		<config>
 								<type>group</type>
 								<internal_type>file</internal_type>

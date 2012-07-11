@@ -1,6 +1,10 @@
 <?php
 /**
- * Player
+ * Ajax Player
+ *
+ * TODO
+ * Use AbstractPlayerController to avoid duplicate code
+ *
  * @package jwplayer
  */
 class Tx_Jwplayer_Controller_AjaxPlayerController extends Tx_Extbase_MVC_Controller_ActionController {

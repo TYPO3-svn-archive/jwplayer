@@ -6,18 +6,31 @@
 		$_EXTKEY,
 		'Pi1',
 		array(
-			'Player' => 'index,showVideo',
+			'Video' => 'index,showSingleFile',
 		),
 		array(
-			'Player' => 'showVideo',
+			'Video' => 'showSingleFile',
 		),
 		'CType'
 	);
 
-	// Video plugin via eID
+	// Audio plugin
 	Tx_Extbase_Utility_Extension::configurePlugin(
 		$_EXTKEY,
 		'Pi2',
+		array(
+			'Audio' => 'index,showSingleFile',
+		),
+		array(
+			'Audio' => 'showSingleFile',
+		),
+		'CType'
+	);
+
+	// Ajax video plugin via eID
+	Tx_Extbase_Utility_Extension::configurePlugin(
+		$_EXTKEY,
+		'Ajax',
 		array(
 			'AjaxPlayer' => 'index,showVideo',
 		),

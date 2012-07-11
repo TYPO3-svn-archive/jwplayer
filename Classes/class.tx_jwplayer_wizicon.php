@@ -41,8 +41,8 @@ class tx_jwplayer_wizicon {
 
 		$wizardItems['plugins_tx_ttnews_pi'] = array(
 			'icon'=>t3lib_extMgm::extRelPath('jwplayer').'tt_content_jwplayer.gif',
-			'title'=>$LANG->getLLL('jwplayer.title',$LL),
-			'description'=>$LANG->getLLL('jwplayer.description',$LL),
+			'title'=>$LANG->getLLL('video.title',$LL),
+			'description'=>$LANG->getLLL('video.description',$LL),
 			'params'=>'&defVals[tt_content][CType]=jwplayer_pi1'
 		);
 
