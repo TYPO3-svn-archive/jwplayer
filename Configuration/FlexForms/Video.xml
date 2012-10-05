@@ -57,7 +57,7 @@
 											<config>
 												<type>group</type>
 												<internal_type>file</internal_type>
-												<allowed>mp4</allowed>
+												<allowed>mp4,m4v,f4v</allowed>
 												<max_size>50000</max_size>
 												<uploadfolder>uploads/tx_jwplayer/</uploadfolder>
 												<size>1</size>
