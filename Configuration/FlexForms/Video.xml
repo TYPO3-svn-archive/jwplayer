@@ -56,10 +56,10 @@
 											<label>LLL:EXT:jwplayer/Resources/Private/Language/locallang_db.xml:flexform.video.settings.flashhtml5</label>
 											<config>
 												<type>group</type>
-												<internal_type>file</internal_type>
+												<internal_type>file_reference</internal_type>
 												<allowed>mp4,m4v,f4v</allowed>
+												<uploadfolder></uploadfolder>
 												<max_size>50000</max_size>
-												<uploadfolder>uploads/tx_jwplayer/</uploadfolder>
 												<size>1</size>
 												<maxitems>1</maxitems>
 												<minitems>0</minitems>
@@ -71,10 +71,10 @@
 											<label>LLL:EXT:jwplayer/Resources/Private/Language/locallang_db.xml:flexform.video.settings.flash</label>
 											<config>
 												<type>group</type>
-												<internal_type>file</internal_type>
+												<internal_type>file_reference</internal_type>
 												<allowed>flv,3gp,3g2</allowed>
+												<uploadfolder></uploadfolder>
 												<max_size>50000</max_size>
-												<uploadfolder>uploads/tx_jwplayer/</uploadfolder>
 												<size>1</size>
 												<maxitems>1</maxitems>
 												<minitems>0</minitems>
@@ -86,10 +86,10 @@
 											<label>LLL:EXT:jwplayer/Resources/Private/Language/locallang_db.xml:flexform.video.settings.html5_ogv</label>
 											<config>
 												<type>group</type>
-												<internal_type>file</internal_type>
+												<internal_type>file_reference</internal_type>
 												<allowed>ogv</allowed>
+												<uploadfolder></uploadfolder>
 												<max_size>50000</max_size>
-												<uploadfolder>uploads/tx_jwplayer/</uploadfolder>
 												<size>1</size>
 												<maxitems>1</maxitems>
 												<minitems>0</minitems>
@@ -101,10 +101,10 @@
 											<label>LLL:EXT:jwplayer/Resources/Private/Language/locallang_db.xml:flexform.video.settings.html5_webm</label>
 											<config>
 												<type>group</type>
-												<internal_type>file</internal_type>
+												<internal_type>file_reference</internal_type>
 												<allowed>webm</allowed>
+												<uploadfolder></uploadfolder>
 												<max_size>50000</max_size>
-												<uploadfolder>uploads/tx_jwplayer/</uploadfolder>
 												<size>1</size>
 												<maxitems>1</maxitems>
 												<minitems>0</minitems>
@@ -126,10 +126,10 @@
 											<label>LLL:EXT:jwplayer/Resources/Private/Language/locallang_db.xml:flexform.video.settings.previewImage</label>
 									 		<config>
 												<type>group</type>
-												<internal_type>file</internal_type>
+												<internal_type>file_reference</internal_type>
 												<allowed>jpg,png,gif</allowed>
+												<uploadfolder></uploadfolder>
 												<max_size>10000</max_size>
-												<uploadfolder>uploads/tx_jwplayer/</uploadfolder>
 												<size>1</size>
 												<maxitems>1</maxitems>
 												<minitems>0</minitems>
@@ -425,10 +425,10 @@
 							<label>LLL:EXT:jwplayer/Resources/Private/Language/locallang_db.xml:flexform.video.settings.skin</label>
 					 		<config>
 								<type>group</type>
-								<internal_type>file</internal_type>
+								<internal_type>file_reference</internal_type>
 								<allowed>swf,zip</allowed>
+								<uploadfolder></uploadfolder>
 								<max_size>10000</max_size>
-								<uploadfolder>uploads/tx_jwplayer/</uploadfolder>
 								<size>1</size>
 								<maxitems>1</maxitems>
 								<minitems>0</minitems>

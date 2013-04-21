@@ -1,7 +1,11 @@
 {namespace jwplayer=Tx_Jwplayer_ViewHelpers}
 
 <div class="jwplayer">
-	<p id="{player_id}">Video is loading ...</p>
+	<p id="{player_id}">
+		Video is loading ...
+		<br>
+		When the player will not be shown in few seconds your browser doesn't support the available movie formats.
+	</p>
 </div>
 
 <f:if condition="{usePageRenderer} == 0"><f:then>
@@ -47,16 +51,16 @@
 	var playlistsize = {playlist_size};
 	var playlist = [
 	<f:for each="{playlistItems}" as="item" iteration="counter"><f:if condition='{counter.isLast}'><f:then>
-	<f:escape>{</f:escape>title: '{item.title}', description: '{item.description}', <f:if condition="{item.duration} > 0"><f:then>duration:{item.duration},</f:then></f:if> file:'{item.file}', image: '{item.image}'<f:escape>}</f:escape>
+	<f:format.raw>{</f:format.raw>title: '{item.title}', description: '{item.description}', <f:if condition="{item.duration} > 0"><f:then>duration:{item.duration},</f:then></f:if> file:'{item.file}', image: '{item.image}'<f:format.raw>}</f:format.raw>
 	</f:then><f:else>
-	<f:escape>{</f:escape>title: '{item.title}', description: '{item.description}', <f:if condition="{item.duration} > 0"><f:then>duration:{item.duration},</f:then></f:if> file:'{item.file}', image: '{item.image}'<f:escape>}</f:escape>,
+	<f:format.raw>{</f:format.raw>title: '{item.title}', description: '{item.description}', <f:if condition="{item.duration} > 0"><f:then>duration:{item.duration},</f:then></f:if> file:'{item.file}', image: '{item.image}'<f:format.raw>}</f:format.raw>,
 	</f:else></f:if></f:for>
 	];
 	var html5 = [
 	<f:for each="{files_html5}" as="item" iteration="counter"><f:if condition='{counter.isLast}'><f:then>
-	<f:escape>{</f:escape>file:'{item}'<f:escape>}</f:escape>
+	<f:format.raw>{</f:format.raw>file:'{item}'<f:format.raw>}</f:format.raw>
 	</f:then><f:else>
-	<f:escape>{</f:escape>file:'{item}'<f:escape>}</f:escape>,</f:else></f:if></f:for>
+	<f:format.raw>{</f:format.raw>file:'{item}'<f:format.raw>}</f:format.raw>,</f:else></f:if></f:for>
 	];
 	/* <![CDATA[ */
 	var config = {
@@ -67,6 +71,7 @@
 		bufferlength:bufferlength,
 		autostart:autostart,
 		controlbar:controlbar,
+		html5: files["html5"],
 		mute:mute,
 		events: {
 			onPlay: function(e) {
@@ -74,20 +79,10 @@
 			}
 		},
 		volume:volume,
-		modes: [
-			{
-				type: 'html5',
-				config: {
-					levels: html5
-				}
-			},
-			{
-				type: 'flash',
-				src: flashplayer
-			}
-		],
-		"playlist.position": playlistposition,
-		"playlist.size": playlistsize
+		listbar: {
+			position: playlistposition,
+			size: playlistsize
+		}
 	};
 	if( playlistposition != 'none' ) {
 		config.playlist = playlist;
@@ -136,3 +131,7 @@
 <noscript>
 	Please enable JavaScript
 </noscript>
+<style>
+	.jwplayer { opacity: 1 !important;}
+	.jwplayer .jwlogo {display: none !important;}
+</style>

@@ -3,7 +3,8 @@
 /**
  * Video controller
  *
- * @package jwplayer
+ * @package TYPO3
+ * @subpackage tx_jwplayer
  */
 class Tx_Jwplayer_Controller_VideoController extends Tx_Jwplayer_Controller_AbstractPlayerController {
 

@@ -263,7 +263,7 @@ abstract class Tx_Jwplayer_Controller_AbstractPlayerController extends Tx_Extbas
 		if( !empty( $filename ) ) {
 			switch( $type ) {
 				case 'file':
-					$filePath = '/'.self::UPLOAD_PATH . $filename;
+					$filePath = '/'. $filename;
 					break;
 				case 'url':
 					$filePath = ( $this->checkUrl( $filename ) ) ? $filename : '';
