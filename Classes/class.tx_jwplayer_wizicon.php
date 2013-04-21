@@ -39,11 +39,11 @@ class tx_jwplayer_wizicon {
 
 		$LL = $this->includeLocalLang();
 
-		$wizardItems['plugins_tx_ttnews_pi'] = array(
+		$wizardItems['plugins_tx_jwplayer_pivideo'] = array(
 			'icon'=>t3lib_extMgm::extRelPath('jwplayer').'tt_content_jwplayer.gif',
 			'title'=>$LANG->getLLL('video.title',$LL),
 			'description'=>$LANG->getLLL('video.description',$LL),
-			'params'=>'&defVals[tt_content][CType]=jwplayer_pi1'
+			'params'=>'&defVals[tt_content][CType]=list&defVals[tt_content][list_type]=jwplayer_pivideo'
 		);
 
 		return $wizardItems;
