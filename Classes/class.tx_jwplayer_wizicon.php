@@ -50,13 +50,23 @@ class tx_jwplayer_wizicon {
 	}
 
 	/**
-	 * Includes the locallang file for the 'tt_news' extension
+	 * Includes the locallang file for the 'jwplayer' extension
 	 *
-	 * @return array The LOCAL_LANG array
+	 * @return array The array with language labels
 	 */
 	function includeLocalLang()	{
 		$llFile = t3lib_extMgm::extPath('jwplayer').'locallang.xml';
 		$LOCAL_LANG = t3lib_div::readLLXMLfile($llFile, $GLOBALS['LANG']->lang);
+		return $LOCAL_LANG;
+		
+		if (class_exists('t3lib_l10n_parser_Llxml')) {
+				/** @var $l10nParser t3lib_l10n_parser_Llxml */
+			$l10nParser = t3lib_div::makeInstance('t3lib_l10n_parser_Llxml');
+			$LOCAL_LANG = $l10nParser->getParsedData($llFile, $GLOBALS['LANG']->lang);
+		} else {
+			$LOCAL_LANG = t3lib_div::readLLXMLfile($llFile, $GLOBALS['LANG']->lang);
+		}
+
 		return $LOCAL_LANG;
 	}
 }
