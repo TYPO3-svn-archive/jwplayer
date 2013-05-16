@@ -59,7 +59,7 @@ class Tx_Jwplayer_Controller_VideoController extends Tx_Jwplayer_Controller_Abst
 				$itemArray = array_shift( $this->playlist );
 
 				if( $movieList = $this->getMovieList( $itemArray ) ) {
-					$previewImagePath = $this->getUploadPath( $itemArray['movieitem']['image'] );
+					$previewImagePath = $this->solveFilePath( $itemArray['movieitem']['image'] );
 
 					$this->view->assign ( 'file_flash', ( !empty( $movieList['flash'] ) ) ? $movieList['flash'] : $movieList['url'] );
 					$this->view->assign ( 'files_html5', $movieList['html5'] );
@@ -93,6 +93,17 @@ class Tx_Jwplayer_Controller_VideoController extends Tx_Jwplayer_Controller_Abst
 			'url' => ''
 		);
 
+		// html5
+		if( $itemArray['movieitem']['file_webm'] ) {
+			$webm = $this->solveFilePath( $itemArray['movieitem']['file_webm'] );
+			$movieArray['html5'][ pathinfo( $webm, PATHINFO_EXTENSION ) ] = $webm;
+		}
+		
+		if( $itemArray['movieitem']['file_ogv'] ) {
+			$ogv = $this->solveFilePath( $itemArray['movieitem']['file_ogv'] );
+			$movieArray['html5'][ pathinfo( $ogv, PATHINFO_EXTENSION ) ] = $ogv;
+		}
+
 		// flashhtml5
 		if( $itemArray['movieitem']['file_flashhtml5'] ) {
 			$flashhtml5 = $this->solveFilePath( $itemArray['movieitem']['file_flashhtml5'] );
@@ -103,17 +114,6 @@ class Tx_Jwplayer_Controller_VideoController extends Tx_Jwplayer_Controller_Abst
 		// flash
 		if( $itemArray['movieitem']['file_flash'] ) {
 			$movieArray['flash'] = $this->solveFilePath( $itemArray['movieitem']['file_flash'] );
-		}
-
-		// html5
-		if( $itemArray['movieitem']['file_ogv'] ) {
-			$ogv = $this->solveFilePath( $itemArray['movieitem']['file_ogv'] );
-			$movieArray['html5'][ pathinfo( $ogv, PATHINFO_EXTENSION ) ] = $ogv;
-		}
-
-		if( $itemArray['movieitem']['file_webm'] ) {
-			$webm = $this->solveFilePath( $itemArray['movieitem']['file_webm'] );
-			$movieArray['html5'][ pathinfo( $webm, PATHINFO_EXTENSION ) ] = $webm;
 		}
 
 		// url
